@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devis personnalisé — Media Dezign Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============ RGPD — Gestion des cookies (tarteaucitron.js) ============ -->
+<script src="js/tarteaucitron/tarteaucitron.js"></script>
+<script>
+tarteaucitron.init({
+    "privacyUrl": "politique-confidentialite.html",
+    "hashtag": "#cookies",
+    "cookieName": "mds_cookies",
+    "orientation": "bottom",
+    "showAlertSmall": false,
+    "cookieslist": true,
+    "showIcon": true,
+    "iconPosition": "BottomLeft",
+    "DenyAllCta": true,
+    "AcceptAllCta": true,
+    "highPrivacy": true,
+    "handleBrowserDNTRequest": false,
+    "removeCredit": true,
+    "useExternalCss": false,
+    "readmoreLink": "politique-confidentialite.html",
+    "mandatory": true,
+    "iconSrc": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='8.5'/><circle cx='9' cy='9' r='1' fill='%23ffffff' stroke='none'/><circle cx='15' cy='10.5' r='1' fill='%23ffffff' stroke='none'/><circle cx='10' cy='15' r='1' fill='%23ffffff' stroke='none'/><circle cx='15.5' cy='15' r='1' fill='%23ffffff' stroke='none'/></svg>"
+});
+/* Aucun service tiers actif pour le moment (aucun traceur détecté sur le site).
+   Pour activer Google Analytics 4 plus tard, décommenter et renseigner l'ID :
+   tarteaucitron.user.gtagUa = 'G-XXXXXXXXXX';
+   (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+*/
+</script>
+<link rel="stylesheet" href="css/tarteaucitron-override.css">
+<!-- ============ /RGPD ============ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#000}
+body{background:#000;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(232,0,90,.35)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070707}
+::-webkit-scrollbar-thumb{background:#1c1c1f;border-radius:6px}
+::-webkit-scrollbar-thumb:hover{background:#2a2a2f}
+
+@keyframes mdsFirefly{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}25%{transform:translate(14px,-20px)}50%{transform:translate(-10px,-34px);opacity:.55}75%{transform:translate(-20px,-10px);opacity:.9}100%{transform:translate(0,0);opacity:0}}
+#fireflies span{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(232,0,90,.6),0 0 16px 4px rgba(192,0,60,.3);animation-name:mdsFirefly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
+.grad-txt{background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.label-kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500}
+.label-kicker::before{content:"";width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;height:74px;background:rgba(7,7,8,.72);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hdr-inner{max-width:1200px;margin:0 auto;padding:0 28px;height:74px;display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{display:flex;align-items:center;gap:11px}
+.hdr-logo img{height:30px;width:auto;filter:drop-shadow(0 0 10px rgba(232,0,90,.35))}
+.hdr-logo span{font-family:'Anton',sans-serif;font-size:21px;letter-spacing:.06em;text-transform:uppercase}
+.hdr-back{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;color:#A7A7A7;padding:10px 18px;border:1px solid rgba(255,255,255,.14);border-radius:999px;transition:color .2s,border-color .2s,background .3s}
+.hdr-back:hover{color:#fff;border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 40px;position:relative;overflow:hidden}
+.hero .grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:62px 62px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 72%)}
+h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(42px,7vw,88px);line-height:1.05;letter-spacing:.005em;margin-top:14px}
+.hero p.sub{color:#A7A7A7;max-width:66ch;font-size:clamp(15px,1.6vw,17.5px);margin-top:18px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.hero .badges span{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#cfcfcf;padding:8px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02)}
+.hero .badges svg{width:14px;height:14px;stroke:#E8005A;stroke-width:2.2;fill:none}
+
+/* ---------- stepper ---------- */
+.stepper{display:flex;align-items:flex-start;gap:0;margin:44px 0 34px;position:relative}
+.stepper .st{flex:1;display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;cursor:default}
+.stepper .st.clickable{cursor:pointer}
+.stepper .st .dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:14.5px;color:#6E6E72;background:#0A0A0A;border:1px solid rgba(255,255,255,.12);transition:all .35s;position:relative;z-index:2}
+.stepper .st .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6E6E72;transition:color .3s;text-align:center}
+.stepper .st.active .dot{background:linear-gradient(135deg,#C0003C,#E8005A);border-color:transparent;color:#fff;box-shadow:0 6px 22px rgba(232,0,90,.4)}
+.stepper .st.active .lbl{color:#fff}
+.stepper .st.done .dot{border-color:rgba(232,0,90,.55);color:#E8005A}
+.stepper .st.done .lbl{color:#A7A7A7}
+.stepper .line{position:absolute;top:20px;left:10%;right:10%;height:2px;background:#1A1A1A;z-index:1}
+.stepper .line i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#C0003C,#E8005A);border-radius:2px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- layout config ---------- */
+.cfg{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;padding-bottom:110px}
+.steps-col{min-width:0}
+.step{display:none}
+.step.on{display:block}
+
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 24px;margin-bottom:18px}
+.card h3{font-size:18px;font-weight:600;margin-bottom:4px}
+.card .hint{color:#6E6E72;font-size:13.5px;margin-bottom:18px}
+h2.step-title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,40px);line-height:1.15;margin-bottom:6px}
+p.step-sub{color:#A7A7A7;font-size:15px;margin-bottom:26px;max-width:62ch}
+
+/* ---------- inputs ---------- */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fgroup{margin-bottom:14px}
+.fgroup label{display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px}
+.fgroup input,.fgroup textarea{width:100%;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;transition:border-color .2s,box-shadow .2s}
+.fgroup input:focus,.fgroup textarea:focus{border-color:#E8005A;outline:none;box-shadow:0 0 0 3px rgba(232,0,90,.12)}
+.fgroup input.err{border-color:#E8005A;box-shadow:0 0 0 3px rgba(232,0,90,.22)}
+.fgroup textarea{min-height:110px;resize:vertical}
+
+/* option cards (checkbox / radio) */
+.opt{display:block;position:relative;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .box{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px 16px;transition:border-color .25s,background .25s,transform .25s}
+.opt:hover .box{border-color:rgba(232,0,90,.4);transform:translateY(-2px)}
+.opt input:checked + .box{border-color:#E8005A;background:linear-gradient(180deg,rgba(232,0,90,.10),rgba(255,255,255,.01))}
+.opt input:focus-visible + .box{outline:2px solid rgba(232,0,90,.6);outline-offset:2px}
+.opt .tick{flex:none;width:22px;height:22px;border-radius:7px;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;margin-top:2px;transition:all .25s;background:#0A0A0A}
+.opt .tick svg{width:13px;height:13px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transform:scale(.4);transition:all .25s}
+.opt input:checked + .box .tick{background:linear-gradient(135deg,#C0003C,#E8005A);border-color:transparent}
+.opt input:checked + .box .tick svg{opacity:1;transform:scale(1)}
+.opt.radio .tick{border-radius:50%}
+.opt .ttl{display:block;font-size:15.5px;font-weight:600}
+.opt .dsc{display:block;color:#A7A7A7;font-size:13.5px;margin-top:3px}
+.opt .prc{display:block;margin-top:7px;font-size:12.5px;letter-spacing:.04em;color:#E8005A;font-weight:600}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt-grid.g3{grid-template-columns:repeat(3,1fr)}
+
+/* univers cards (step 2) */
+.uni-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.uni .box{padding:24px 22px;border-radius:16px}
+.uni .ic{flex:none;width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)}
+.uni .ic svg{width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none}
+.uni .ttl{font-size:18px}
+.uni ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.uni ul li{color:#8f8f93;font-size:13px;display:flex;gap:8px}
+.uni ul li::before{content:"›";color:#E8005A}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:9px 17px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#A7A7A7;font-size:13.5px;transition:all .22s}
+.chip:hover span{border-color:rgba(232,0,90,.5);color:#fff}
+.chip input:checked + span{background:linear-gradient(135deg,#C0003C,#E8005A);border-color:transparent;color:#fff;box-shadow:0 5px 18px rgba(192,0,60,.3)}
+
+/* slider */
+.slider-row{display:flex;align-items:center;gap:18px}
+.slider-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,#E8005A var(--pct,20%),#1c1c1f var(--pct,20%));outline:none;cursor:pointer}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid #E8005A;box-shadow:0 4px 14px rgba(232,0,90,.5);cursor:grab}
+.slider-row input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid #E8005A;box-shadow:0 4px 14px rgba(232,0,90,.5);cursor:grab}
+.slider-val{flex:none;min-width:120px;text-align:center;font-family:'Anton',sans-serif;font-size:26px;letter-spacing:.03em;color:#fff;background:#0A0A0A;border:1px solid rgba(232,0,90,.35);border-radius:12px;padding:8px 14px}
+.slider-val small{display:block;font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E72}
+
+/* uni panels step 3 */
+.uni-panel{display:none;margin-bottom:26px}
+.uni-panel.on{display:block}
+.uni-panel .panel-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.uni-panel .panel-head .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)}
+.uni-panel .panel-head .ic svg{width:20px;height:20px;stroke:#E8005A;stroke-width:1.8;fill:none}
+.uni-panel .panel-head h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:22px;letter-spacing:.04em}
+.subttl{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#E8005A;font-weight:600;margin:20px 0 12px}
+.note-info{display:flex;gap:10px;align-items:flex-start;background:rgba(232,0,90,.05);border:1px solid rgba(232,0,90,.18);border-radius:12px;padding:13px 15px;color:#A7A7A7;font-size:13.5px;margin-top:14px}
+.note-info svg{flex:none;width:16px;height:16px;stroke:#E8005A;stroke-width:2;fill:none;margin-top:2px}
+
+/* nav buttons */
+.step-nav{display:flex;justify-content:space-between;gap:14px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;cursor:pointer;border:1px solid transparent;font-family:'Space Grotesk',sans-serif;transition:transform .2s,box-shadow .3s,border-color .2s,background .3s}
+.btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none}
+.btn-primary{background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,0,90,.5)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.16)}
+.btn-ghost:hover{border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+
+/* ---------- aside estimation ---------- */
+.aside{position:sticky;top:96px}
+.est{background:radial-gradient(120% 100% at 50% 0%,rgba(232,0,90,.10),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(232,0,90,.3);border-radius:18px;padding:24px 22px;overflow:hidden;position:relative}
+.est .est-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.est .est-head h4{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:18px;letter-spacing:.06em}
+.est .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#E8005A;font-weight:600}
+.est .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#E8005A;box-shadow:0 0 8px rgba(232,0,90,.9);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.est-items{display:flex;flex-direction:column;gap:9px;min-height:60px}
+.est-items .ei{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#cfcfcf;padding-bottom:9px;border-bottom:1px dashed rgba(255,255,255,.08)}
+.est-items .ei b{color:#fff;font-weight:600;white-space:nowrap}
+.est-items .empty{color:#6E6E72;font-size:13.5px;text-align:center;padding:16px 0}
+.est-total{margin-top:16px;padding-top:16px;border-top:1px solid rgba(232,0,90,.25)}
+.est-total .t-lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A7A7A7}
+.est-total .t-val{font-family:'Anton',sans-serif;font-size:clamp(26px,2.6vw,34px);letter-spacing:.02em;margin-top:4px}
+.est-total .t-note{color:#6E6E72;font-size:12px;margin-top:8px}
+.est-incl{margin-top:16px;display:flex;flex-direction:column;gap:7px}
+.est-incl span{display:flex;gap:9px;font-size:12.5px;color:#8f8f93}
+.est-incl svg{flex:none;width:14px;height:14px;stroke:#E8005A;stroke-width:2.4;fill:none;margin-top:2px}
+
+/* barre mobile */
+.mob-bar{display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:45;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(232,0,90,.35);border-radius:16px;padding:12px 18px;align-items:center;justify-content:space-between;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.mob-bar .m-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A7A7A7}
+.mob-bar .m-val{font-family:'Anton',sans-serif;font-size:20px}
+
+/* recap step 4 */
+.recap-group{margin-bottom:20px}
+.recap-group .rg-title{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#E8005A;font-weight:600;margin-bottom:10px}
+.recap-group .rg-title::after{content:"";flex:1;height:1px;background:rgba(232,0,90,.2)}
+.recap-line{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.07);font-size:14.5px}
+.recap-line .rl-l{color:#cfcfcf}
+.recap-line .rl-l small{display:block;color:#6E6E72;font-size:12.5px}
+.recap-line .rl-r{color:#fff;font-weight:600;white-space:nowrap}
+.recap-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px;padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,rgba(192,0,60,.18),rgba(232,0,90,.10));border:1px solid rgba(232,0,90,.4)}
+.recap-total .rt-lbl{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-weight:600}
+.recap-total .rt-val{font-family:'Anton',sans-serif;font-size:clamp(26px,3vw,36px)}
+
+/* step 5 */
+.final-hero{text-align:center;padding:30px 0 10px}
+.final-hero .ok-ring{width:86px;height:86px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(232,0,90,.08);border:1px solid rgba(232,0,90,.35);box-shadow:0 0 50px rgba(232,0,90,.25)}
+.final-hero .ok-ring svg{width:38px;height:38px;stroke:#E8005A;stroke-width:2.6;fill:none}
+.final-hero .step-sub{margin:14px auto 0;max-width:50ch;text-wrap:balance}
+.final-ref{display:inline-block;margin:26px 0 34px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#A7A7A7;border:1px dashed rgba(232,0,90,.4);border-radius:999px;padding:8px 18px}
+.final-hero .cta-row{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+.next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
+.next-steps .ns{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 18px;text-align:left}
+.next-steps .ns .n{font-family:'Anton',sans-serif;font-size:26px;color:transparent;-webkit-text-stroke:1.3px rgba(232,0,90,.6)}
+.next-steps .ns h4{font-size:15px;margin:10px 0 5px}
+.next-steps .ns p{color:#A7A7A7;font-size:13px}
+
+/* toast */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);opacity:0;z-index:80;background:rgba(10,10,10,.95);border:1px solid rgba(232,0,90,.5);color:#fff;font-size:14px;padding:13px 22px;border-radius:999px;box-shadow:0 14px 40px rgba(0,0,0,.6);pointer-events:none}
+
+/* footer */
+footer{border-top:1px solid #1A1A1A;padding:34px 0}
+footer .f-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;color:#6E6E72;font-size:13px}
+
+/* ---------- PDF template (hors écran) ---------- */
+#pdfTpl{position:fixed;left:-2200px;top:0;width:794px;background:#fff;color:#141414;font-family:'Space Grotesk',sans-serif;z-index:-1}
+
+/* responsive */
+@media(max-width:980px){
+  .cfg{grid-template-columns:1fr}
+  .aside{position:static;order:2}
+  .mob-bar{display:flex}
+  .cfg{padding-bottom:150px}
+}
+@media(max-width:720px){
+  .frow,.opt-grid,.opt-grid.g3,.uni-grid{grid-template-columns:1fr}
+  .next-steps{grid-template-columns:1fr}
+  .stepper .st .lbl{display:none}
+  .slider-row{flex-direction:column;align-items:stretch}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  #fireflies{display:none}
+}
+</style>
+</head>
+<body>
+
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.04;mix-blend-mode:screen;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+<div id="fireflies" aria-hidden="true" style="position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden"></div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="hdr-inner">
+    <a href="index.html" class="hdr-logo" aria-label="Media Dezign Studio — accueil">
+      <img src="assets/logo-md-white.webp" alt="Media Dezign Studio">
+      <span>Studio<span style="color:#E8005A">.AI</span></span>
+    </a>
+    <a href="index.html" class="hdr-back">
+      <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M17 7L7 17M15 17H7V9"/></svg>
+      Retour au site
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="label-kicker">Devis personnalisé</span>
+    <h1 id="devisTitle">Configurez <span class="grad-txt">votre projet.</span></h1>
+    <p class="sub">Composez votre projet étape par étape : chaque choix affine l'estimation en temps réel. À la fin, téléchargez un devis PDF détaillé à l'image du studio — sans engagement, en moins de 3 minutes.</p>
+    <div class="badges" data-reveal>
+      <span><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>3 minutes chrono</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 2v20M17 7H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Estimation en temps réel</span>
+      <span><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>Devis PDF instantané</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sans engagement</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIGURATEUR ============ -->
+<main class="wrap" id="config">
+
+  <div class="stepper" id="stepper">
+    <div class="line"><i id="stepLine"></i></div>
+    <div class="st active" data-go="1"><div class="dot">1</div><div class="lbl">Projet</div></div>
+    <div class="st" data-go="2"><div class="dot">2</div><div class="lbl">Univers</div></div>
+    <div class="st" data-go="3"><div class="dot">3</div><div class="lbl">Options</div></div>
+    <div class="st" data-go="4"><div class="dot">4</div><div class="lbl">Récapitulatif</div></div>
+    <div class="st" data-go="5"><div class="dot">5</div><div class="lbl">Devis</div></div>
+  </div>
+
+  <form id="configForm" onsubmit="return false" novalidate>
+  <div class="cfg">
+    <div class="steps-col">
+
+      <!-- ======== ÉTAPE 1 : SOCLE ======== -->
+      <section class="step on" data-step="1">
+        <h2 class="step-title">Le socle du <span class="grad-txt">projet.</span></h2>
+        <p class="step-sub">Qui êtes-vous, et dans quel cadre s'inscrit votre projet ? Ces informations me permettent d'adapter la direction artistique et le planning.</p>
+
+        <div class="card">
+          <h3>Vos coordonnées</h3>
+          <p class="hint">Uniquement utilisées pour établir le devis et vous recontacter.</p>
+          <div class="frow">
+            <div class="fgroup"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" placeholder="Votre prénom" autocomplete="given-name"></div>
+            <div class="fgroup"><label for="f-nom">Nom *</label><input id="f-nom" type="text" placeholder="Votre nom" autocomplete="family-name"></div>
+          </div>
+          <div class="frow">
+            <div class="fgroup"><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="vous@exemple.com" autocomplete="email"></div>
+            <div class="fgroup"><label for="f-tel">Téléphone</label><input id="f-tel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
+          </div>
+          <div class="fgroup"><label for="f-societe">Société / Marque</label><input id="f-societe" type="text" placeholder="Nom de votre société (optionnel)" autocomplete="organization"></div>
+        </div>
+
+        <div class="card">
+          <h3>Votre timeline</h3>
+          <p class="hint">Le délai influence l'organisation de la production — et le tarif.</p>
+          <div class="opt-grid g3">
+            <label class="opt radio"><input type="radio" name="timeline" value="urgent">
+              <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span><span class="ttl">⚡ Urgent</span><span class="dsc">Livraison en moins d'une semaine</span><span class="prc">Majoration +25%</span></span></span>
+            </label>
+            <label class="opt radio"><input type="radio" name="timeline" value="standard" checked>
+              <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span><span class="ttl">🎯 Standard</span><span class="dsc">2 à 4 semaines, rythme confortable</span><span class="prc">Tarif normal</span></span></span>
+            </label>
+            <label class="opt radio"><input type="radio" name="timeline" value="flexible">
+              <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span><span class="ttl">🌊 Flexible</span><span class="dsc">Plus d'un mois, planning souple</span><span class="prc">Remise −5%</span></span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Votre secteur d'activité</h3>
+          <p class="hint">M'aide à orienter la direction artistique dès le premier échange.</p>
+          <div class="chips" id="secteurChips">
+            <label class="chip"><input type="radio" name="secteur" value="Mode & Luxe"><span>Mode &amp; Luxe</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Tech & Startup"><span>Tech &amp; Startup</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Beauté & Cosmétique"><span>Beauté &amp; Cosmétique</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Food & Restauration"><span>Food &amp; Restauration</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Corporate & B2B"><span>Corporate &amp; B2B</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Événementiel"><span>Événementiel</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Immobilier"><span>Immobilier</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="E-commerce"><span>E-commerce</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Musique & Culture"><span>Musique &amp; Culture</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Sport & Bien-être"><span>Sport &amp; Bien-être</span></label>
+            <label class="chip"><input type="radio" name="secteur" value="Autre"><span>Autre</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== ÉTAPE 2 : UNIVERS ======== -->
+      <section class="step" data-step="2">
+        <h2 class="step-title">Choisissez vos <span class="grad-txt">univers.</span></h2>
+        <p class="step-sub">Sélectionnez un ou plusieurs domaines : les étapes suivantes s'adapteront à vos choix pour configurer chaque univers au millimètre.</p>
+
+        <div class="uni-grid">
+          <label class="opt uni"><input type="checkbox" name="universe" value="images">
+            <span class="box"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
+            <span style="flex:1"><span class="ttl">Création d'images &amp; IA</span>
+            <span class="dsc">Visuels sur-mesure générés et retouchés : campagnes, packshots, éditorial, réseaux sociaux.</span>
+            <ul><li>Direction artistique incluse</li><li>Workflows IA pro (ComfyUI, Flux, SDXL)</li><li>Retouche Photoshop de qualité studio</li></ul>
+            <span class="prc">À partir de 25 € / visuel</span></span>
+            <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></span>
+          </label>
+
+          <label class="opt uni"><input type="checkbox" name="universe" value="video">
+            <span class="box"><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></span>
+            <span style="flex:1"><span class="ttl">Vidéo &amp; Motion Design</span>
+            <span class="dsc">Spots publicitaires, réels, motion design explicatif, habillage graphique et VFX.</span>
+            <ul><li>Génération de plans IA (Sora, Runway, Kling)</li><li>Montage &amp; motion After Effects</li><li>Sound design &amp; voix-off</li></ul>
+            <span class="prc">À partir de 200 €</span></span>
+            <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></span>
+          </label>
+
+          <label class="opt uni"><input type="checkbox" name="universe" value="web">
+            <span class="box"><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h6M6 11h9"/></svg></span>
+            <span style="flex:1"><span class="ttl">Création Web &amp; Digitale</span>
+            <span class="dsc">Landing pages, sites vitrines et applications web — design exigeant et intégration réelle.</span>
+            <ul><li>UX/UI sur-mesure (Figma)</li><li>Animations GSAP &amp; WebGL</li><li>Déploiement &amp; mise en ligne inclus</li></ul>
+            <span class="prc">À partir de 700 €</span></span>
+            <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></span>
+          </label>
+
+          <label class="opt uni"><input type="checkbox" name="universe" value="branding">
+            <span class="box"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></span>
+            <span style="flex:1"><span class="ttl">Branding &amp; Direction Artistique</span>
+            <span class="dsc">Identité visuelle complète : logo, charte graphique, brandbook, déclinaisons.</span>
+            <ul><li>Univers visuel cohérent</li><li>Fichiers sources livrés (AI, SVG, PDF)</li><li>Kit réseaux sociaux prêt à l'emploi</li></ul>
+            <span class="prc">À partir de 250 €</span></span>
+            <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></span>
+          </label>
+        </div>
+        <p id="uniWarn" style="display:none;margin-top:14px;color:#E8005A;font-size:14px">Sélectionnez au moins un univers pour continuer.</p>
+      </section>
+
+      <!-- ======== ÉTAPE 3 : CONFIGURATION ======== -->
+      <section class="step" data-step="3">
+        <h2 class="step-title">Configuration <span class="grad-txt">au millimètre.</span></h2>
+        <p class="step-sub">Affinez chaque univers sélectionné. L'estimation à droite se met à jour à chaque choix.</p>
+
+        <!-- ---- IMAGES & IA ---- -->
+        <div class="uni-panel" data-uni="images">
+          <div class="panel-head"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><h3>Images &amp; IA</h3></div>
+
+          <div class="card">
+            <div class="subttl">Type de visuels</div>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="imgType" value="Concept art"><span>Concept art</span></label>
+              <label class="chip"><input type="checkbox" name="imgType" value="Packshot produit"><span>Packshot produit</span></label>
+              <label class="chip"><input type="checkbox" name="imgType" value="Réseaux sociaux"><span>Réseaux sociaux</span></label>
+              <label class="chip"><input type="checkbox" name="imgType" value="Éditorial & Mode"><span>Éditorial &amp; Mode</span></label>
+              <label class="chip"><input type="checkbox" name="imgType" value="Affiche & Print"><span>Affiche &amp; Print</span></label>
+              <label class="chip"><input type="checkbox" name="imgType" value="Mascotte & Personnage"><span>Mascotte &amp; Personnage</span></label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Volume</div>
+            <div class="slider-row">
+              <input type="range" id="imgVolume" min="1" max="50" value="10" aria-label="Nombre de visuels">
+              <div class="slider-val"><span id="imgVolumeVal">10</span><small>visuels</small></div>
+            </div>
+            <div class="note-info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>Tarif dégressif : −10% dès 10 visuels, −20% dès 25 visuels — appliqué automatiquement.</div>
+
+            <div class="subttl" style="margin-top:26px">Niveau de post-production</div>
+            <div class="opt-grid g3">
+              <label class="opt radio"><input type="radio" name="imgRetouche" value="basic">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Basic</span><span class="dsc">Génération IA brute + upscale haute définition</span><span class="prc">25 – 45 € / visuel</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="imgRetouche" value="pro" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Pro</span><span class="dsc">Nettoyage, colorimétrie, ajustements fins sur Photoshop</span><span class="prc">55 – 90 € / visuel</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="imgRetouche" value="premium">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Premium</span><span class="dsc">Compositing lourd, intégration produit réel dans décor IA, détourage millimétré</span><span class="prc">110 – 180 € / visuel</span></span></span>
+              </label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Déclinaisons de formats <span style="color:#6E6E72;font-weight:400;text-transform:none;letter-spacing:0">— +8% par format additionnel</span></div>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="imgFormat" value="Carré 1:1"><span>Carré 1:1</span></label>
+              <label class="chip"><input type="checkbox" name="imgFormat" value="Story 9:16"><span>Story 9:16</span></label>
+              <label class="chip"><input type="checkbox" name="imgFormat" value="Paysage 16:9"><span>Paysage 16:9</span></label>
+              <label class="chip"><input type="checkbox" name="imgFormat" value="Print haute déf."><span>Print haute déf. (300 dpi)</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- VIDÉO & MOTION ---- -->
+        <div class="uni-panel" data-uni="video">
+          <div class="panel-head"><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></span><h3>Vidéo &amp; Motion</h3></div>
+
+          <div class="card">
+            <div class="subttl">Type de projet</div>
+            <div class="opt-grid">
+              <label class="opt radio"><input type="radio" name="vidType" value="social" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Vidéo réseaux sociaux</span><span class="dsc">Reel, TikTok, short — format vertical percutant</span><span class="prc">250 – 500 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="vidType" value="spot">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Spot publicitaire</span><span class="dsc">Film de marque ou produit, rendu cinématique</span><span class="prc">600 – 1 200 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="vidType" value="motion">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Motion design explicatif</span><span class="dsc">Expliquer un produit ou un service en animation</span><span class="prc">700 – 1 400 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="vidType" value="produit">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Vidéo produit</span><span class="dsc">Mise en scène produit, packshot animé, reveal</span><span class="prc">400 – 800 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="vidType" value="habillage">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Habillage graphique</span><span class="dsc">Identité animée : jingles, transitions, lower-thirds</span><span class="prc">350 – 700 €</span></span></span>
+              </label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Durée estimée</div>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="vidDuree" value="s15"><span>&lt; 15 s</span></label>
+              <label class="chip"><input type="radio" name="vidDuree" value="s30" checked><span>15 – 30 s</span></label>
+              <label class="chip"><input type="radio" name="vidDuree" value="s60"><span>30 – 60 s</span></label>
+              <label class="chip"><input type="radio" name="vidDuree" value="s60p"><span>+ de 60 s</span></label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Briques techniques à la carte</div>
+            <div class="opt-grid">
+              <label class="opt"><input type="checkbox" name="vidBrique" value="storyboard">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Storyboard &amp; scripting</span><span class="dsc">Découpage scène par scène + script narratif</span><span class="prc">+ 120 – 250 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="ia">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Génération de plans IA</span><span class="dsc">Sora, Runway, Kling, Seedance — plans impossibles à filmer</span><span class="prc">+ 180 – 400 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="logoAnim">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Animation de logo</span><span class="dsc">Intro / outro de marque en motion design</span><span class="prc">+ 120 – 300 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="vfx">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">VFX &amp; compositing</span><span class="dsc">Effets visuels sur vos séquences existantes</span><span class="prc">+ 250 – 600 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="sound">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Sound design &amp; mixage</span><span class="dsc">Musique, bruitages, mixage audio propre</span><span class="prc">+ 120 – 280 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="voixIA">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Voix-off IA</span><span class="dsc">Voix de synthèse premium, multilingue</span><span class="prc">+ 80 – 150 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="voixH">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Voix-off humaine</span><span class="dsc">Comédien(ne) voix professionnel(le)</span><span class="prc">+ 200 – 350 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="vidBrique" value="subs">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Sous-titres &amp; déclinaisons</span><span class="dsc">Sous-titrage stylisé + versions courtes multi-formats</span><span class="prc">+ 80 – 180 €</span></span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- WEB & DIGITAL ---- -->
+        <div class="uni-panel" data-uni="web">
+          <div class="panel-head"><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h6M6 11h9"/></svg></span><h3>Web &amp; Digital</h3></div>
+
+          <div class="card">
+            <div class="subttl">Type de site</div>
+            <div class="opt-grid g3">
+              <label class="opt radio"><input type="radio" name="webType" value="landing" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Landing page</span><span class="dsc">One-page percutante orientée conversion</span><span class="prc">700 – 1 400 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="webType" value="vitrine">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Site vitrine</span><span class="dsc">Multi-pages : accueil, services, à propos, contact…</span><span class="prc">1 500 – 3 200 €</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="webType" value="app">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Application web</span><span class="dsc">Fonctionnalités sur-mesure, comptes, données</span><span class="prc">3 200 – 6 500 €</span></span></span>
+              </label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Design &amp; UX</div>
+            <div class="opt-grid g3">
+              <label class="opt radio"><input type="radio" name="webDesign" value="template" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Template adapté</span><span class="dsc">Rapide et efficace, personnalisé à votre marque</span><span class="prc">Inclus</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="webDesign" value="custom">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Sur-mesure</span><span class="dsc">Création UI de zéro sur Figma, unique à votre image</span><span class="prc">+ 35%</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="webDesign" value="wow">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Design "Wow"</span><span class="dsc">Animations poussées GSAP, ScrollTrigger, 3D/WebGL</span><span class="prc">+ 70%</span></span></span>
+              </label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Fonctionnalités avancées</div>
+            <div class="opt-grid">
+              <label class="opt"><input type="checkbox" name="webOpt" value="cms">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Back-office / CMS</span><span class="dsc">Éditez vos textes et images en toute autonomie</span><span class="prc">+ 350 – 700 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="webOpt" value="chatbot">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Automatisations IA</span><span class="dsc">Chatbot, génération de contenu automatisée</span><span class="prc">+ 300 – 650 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="webOpt" value="gsap">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Animations GSAP sur-mesure</span><span class="dsc">Micro-interactions et séquences scroll avancées</span><span class="prc">+ 250 – 700 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="webOpt" value="seo">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">SEO avancé &amp; performance</span><span class="dsc">Optimisation référencement, Core Web Vitals</span><span class="prc">+ 200 – 500 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="webOpt" value="shop">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Boutique / paiement</span><span class="dsc">Vente en ligne, Stripe, gestion des commandes</span><span class="prc">+ 500 – 1 200 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="webOpt" value="i18n">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Multilingue</span><span class="dsc">Site en plusieurs langues (FR / EN / autres)</span><span class="prc">+ 200 – 450 €</span></span></span>
+              </label>
+            </div>
+            <div class="note-info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>Maintenance, hébergement et nom de domaine possibles en forfait mensuel (dès 40 €/mois) — traités hors devis, on en parle ensemble.</div>
+          </div>
+        </div>
+
+        <!-- ---- BRANDING ---- -->
+        <div class="uni-panel" data-uni="branding">
+          <div class="panel-head"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></span><h3>Branding &amp; DA</h3></div>
+
+          <div class="card">
+            <div class="subttl">Niveau de création</div>
+            <div class="opt-grid">
+              <label class="opt radio"><input type="radio" name="brandNiveau" value="scratch" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Création from scratch</span><span class="dsc">Une identité neuve, construite de zéro sur votre positionnement</span><span class="prc">Tarif plein</span></span></span>
+              </label>
+              <label class="opt radio"><input type="radio" name="brandNiveau" value="refonte">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Refonte / lifting</span><span class="dsc">Moderniser l'existant en gardant vos acquis de marque</span><span class="prc">−30%</span></span></span>
+              </label>
+            </div>
+
+            <div class="subttl" style="margin-top:26px">Livrables</div>
+            <div class="opt-grid">
+              <label class="opt"><input type="checkbox" name="brandLiv" value="logo" checked>
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Logo + déclinaisons</span><span class="dsc">3 pistes, versions couleur/mono/négatif, tous formats (AI, SVG, PNG)</span><span class="prc">350 – 650 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="brandLiv" value="charte">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Charte graphique complète</span><span class="dsc">Couleurs, typographies, règles d'usage, grilles</span><span class="prc">350 – 700 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="brandLiv" value="brandbook">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Brandbook</span><span class="dsc">Livre de marque : ton, storytelling, univers visuel étendu</span><span class="prc">550 – 1 100 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="brandLiv" value="kitRS">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Kit réseaux sociaux</span><span class="dsc">Templates de posts, bannières, avatars, stories</span><span class="prc">220 – 450 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="brandLiv" value="papeterie">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Papeterie &amp; templates</span><span class="dsc">Cartes de visite, signature mail, template de présentation</span><span class="prc">150 – 350 €</span></span></span>
+              </label>
+              <label class="opt"><input type="checkbox" name="brandLiv" value="naming">
+                <span class="box"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span><span class="ttl">Naming &amp; baseline</span><span class="dsc">Recherche de nom et/ou slogan de marque</span><span class="prc">150 – 400 €</span></span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== ÉTAPE 4 : RÉCAP ======== -->
+      <section class="step" data-step="4">
+        <h2 class="step-title">Votre <span class="grad-txt">récapitulatif.</span></h2>
+        <p class="step-sub">Vérifiez le détail de votre projet. Vous pouvez revenir en arrière pour ajuster n'importe quel choix.</p>
+
+        <div class="card">
+          <div id="recapClient" style="display:flex;flex-wrap:wrap;gap:10px 26px;color:#A7A7A7;font-size:14px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:18px"></div>
+          <div id="recapList"></div>
+          <div class="recap-total">
+            <span class="rt-lbl">Estimation totale</span>
+            <span class="rt-val" id="recapTotal">—</span>
+          </div>
+          <p style="color:#6E6E72;font-size:12.5px;margin-top:12px">Fourchette indicative HT. Le devis final est affiné ensemble après un premier échange — il peut être inférieur comme supérieur selon la complexité réelle.</p>
+        </div>
+
+        <div class="card">
+          <h3>Notes supplémentaires</h3>
+          <p class="hint">Références, liens, contraintes, détails inclassables — tout ce qui m'aidera à comprendre votre vision.</p>
+          <div class="fgroup"><textarea id="f-notes" placeholder="Ex : j'aimerais un style proche de telle marque, j'ai déjà un logo, deadline liée à un salon le 15 septembre…"></textarea></div>
+        </div>
+      </section>
+
+      <!-- ======== ÉTAPE 5 : PDF ======== -->
+      <section class="step" data-step="5">
+        <div class="final-hero">
+          <div class="ok-ring"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h2 class="step-title">Votre devis est <span class="grad-txt">prêt.</span></h2>
+          <p class="step-sub">Téléchargez votre devis estimatif au format PDF, à l'image du studio. Envoyez-le moi ensuite en un clic : je reviens vers vous sous 24 à 48h avec une proposition affinée.</p>
+          <span class="final-ref" id="finalRef">Réf. —</span>
+          <input type="text" id="f-website" name="website" value="" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="cta-row">
+            <button type="button" class="btn btn-primary" id="btnPdf">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+              Télécharger mon devis PDF
+            </button>
+            <button type="button" class="btn btn-ghost" id="btnMail">
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Envoyer au studio
+            </button>
+          </div>
+          <div class="next-steps">
+            <div class="ns"><div class="n">01</div><h4>Vous recevez le PDF</h4><p>Un devis estimatif détaillé, ligne par ligne, avec les conditions simplifiées.</p></div>
+            <div class="ns"><div class="n">02</div><h4>Je vous recontacte</h4><p>Sous 24 – 48h, on échange sur votre vision, vos références et vos priorités.</p></div>
+            <div class="ns"><div class="n">03</div><h4>Devis final &amp; lancement</h4><p>Proposition affinée, planning précis, et la production démarre.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- navigation -->
+      <div class="step-nav">
+        <button type="button" class="btn btn-ghost" id="btnPrev" style="visibility:hidden">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Précédent
+        </button>
+        <button type="button" class="btn btn-primary" id="btnNext">
+          Continuer <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ======== ASIDE ESTIMATION ======== -->
+    <aside class="aside" id="asideBox">
+      <div class="est">
+        <div class="est-head"><h4>Votre estimation</h4><span class="live">En direct</span></div>
+        <div class="est-items" id="estItems"><div class="empty">Sélectionnez vos univers pour voir apparaître votre estimation.</div></div>
+        <div class="est-total">
+          <div class="t-lbl">Fourchette estimée</div>
+          <div class="t-val grad-txt" id="estTotal">0 €</div>
+          <div class="t-note">Estimation indicative HT — devis final après échange.</div>
+        </div>
+        <div class="est-incl">
+          <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>2 allers-retours de révisions inclus</span>
+          <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Fichiers finaux haute définition livrés</span>
+          <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Un seul interlocuteur, de A à Z</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+  </form>
+</main>
+
+<!-- barre estimation mobile -->
+<div class="mob-bar" id="mobBar">
+  <span class="m-lbl">Estimation</span>
+  <span class="m-val grad-txt" id="mobTotal">0 €</span>
+</div>
+
+<div id="toast" role="status"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap f-in">
+    <span>© <span id="year"></span> Media Dezign Studio — mediadezignstudio.ai</span>
+    <span style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+      <a href="politique-confidentialite.html" style="color:#A7A7A7">Confidentialité</a>
+      <a href="#cookies" style="color:#A7A7A7">Gestion des cookies</a>
+      <a href="mailto:contact@mediadezignstudio.ai" style="color:#A7A7A7">contact@mediadezignstudio.ai</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ============ TEMPLATE PDF (hors écran) ============ -->
+<div id="pdfTpl" aria-hidden="true"></div>
+
+<script>
+/* =========================================================
+   CONFIGURATEUR DE DEVIS — Media Dezign Studio
+   Fourchettes de prix freelance (HT, indicatives)
+   ========================================================= */
+
+const PRICING = {
+  timeline: {
+    urgent:   { mult: 1.25, label: 'Urgent (moins d’une semaine)' },
+    standard: { mult: 1,    label: 'Standard (2 à 4 semaines)' },
+    flexible: { mult: 0.95, label: 'Flexible (plus d’un mois)' },
+  },
+  images: {
+    perImage: { basic: [25, 45], pro: [55, 90], premium: [110, 180] },
+    retLabels: { basic: 'Basic', pro: 'Pro', premium: 'Premium' },
+    formatPct: 0.08,
+  },
+  video: {
+    base: {
+      social:   { p: [250, 500],   label: 'Vidéo réseaux sociaux' },
+      spot:     { p: [600, 1200],  label: 'Spot publicitaire' },
+      motion:   { p: [700, 1400],  label: 'Motion design explicatif' },
+      produit:  { p: [400, 800],   label: 'Vidéo produit' },
+      habillage:{ p: [350, 700],   label: 'Habillage graphique' },
+    },
+    duree: {
+      s15:  { mult: 0.8,  label: 'moins de 15 s' },
+      s30:  { mult: 1,    label: '15 – 30 s' },
+      s60:  { mult: 1.35, label: '30 – 60 s' },
+      s60p: { mult: 1.8,  label: 'plus de 60 s' },
+    },
+    briques: {
+      storyboard: { p: [120, 250], label: 'Storyboard & scripting' },
+      ia:         { p: [180, 400], label: 'Génération de plans IA' },
+      logoAnim:   { p: [120, 300], label: 'Animation de logo (intro/outro)' },
+      vfx:        { p: [250, 600], label: 'VFX & compositing' },
+      sound:      { p: [120, 280], label: 'Sound design & mixage' },
+      voixIA:     { p: [80, 150],  label: 'Voix-off IA' },
+      voixH:      { p: [200, 350], label: 'Voix-off humaine' },
+      subs:       { p: [80, 180],  label: 'Sous-titres & déclinaisons' },
+    },
+  },
+  web: {
+    base: {
+      landing: { p: [700, 1400],  label: 'Landing page one-page' },
+      vitrine: { p: [1500, 3200], label: 'Site vitrine multi-pages' },
+      app:     { p: [3200, 6500], label: 'Application web sur-mesure' },
+    },
+    design: {
+      template: { mult: 1,    label: 'template adapté' },
+      custom:   { mult: 1.35, label: 'design sur-mesure' },
+      wow:      { mult: 1.7,  label: 'design « Wow » (GSAP / 3D)' },
+    },
+    options: {
+      cms:     { p: [350, 700],  label: 'Back-office / CMS' },
+      chatbot: { p: [300, 650],  label: 'Automatisations IA / chatbot' },
+      gsap:    { p: [250, 700],  label: 'Animations GSAP sur-mesure' },
+      seo:     { p: [200, 500],  label: 'SEO avancé & performance' },
+      shop:    { p: [500, 1200], label: 'Boutique / paiement en ligne' },
+      i18n:    { p: [200, 450],  label: 'Multilingue' },
+    },
+  },
+  branding: {
+    niveau: {
+      scratch: { mult: 1,   label: 'création from scratch' },
+      refonte: { mult: 0.7, label: 'refonte / lifting' },
+    },
+    livrables: {
+      logo:      { p: [350, 650],  label: 'Logo + déclinaisons' },
+      charte:    { p: [350, 700],  label: 'Charte graphique complète' },
+      brandbook: { p: [550, 1100], label: 'Brandbook' },
+      kitRS:     { p: [220, 450],  label: 'Kit réseaux sociaux' },
+      papeterie: { p: [150, 350],  label: 'Papeterie & templates' },
+      naming:    { p: [150, 400],  label: 'Naming & baseline' },
+    },
+  },
+};
+
+const UNI_LABELS = { images: 'Images & IA', video: 'Vidéo & Motion', web: 'Web & Digital', branding: 'Branding & DA' };
+
+const $  = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => Array.prototype.slice.call((c || document).querySelectorAll(s));
+
+const fmt = (n) => Math.round(n).toLocaleString('fr-FR');
+const fmtRange = (mn, mx) => fmt(mn) + ' – ' + fmt(mx) + ' €';
+const round10 = (n) => Math.round(n / 10) * 10;
+
+let currentStep = 1;
+let maxVisited = 1;
+const devisRef = 'MDZ-' + new Date().toISOString().slice(0, 10).replace(/-/g, '') + '-' +
+  String(Math.floor(100 + Math.random() * 900));
+
+/* ---------- lecture de l'état depuis le DOM ---------- */
+function collect() {
+  const val = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  const radio = (name) => { const el = $('input[name="' + name + '"]:checked'); return el ? el.value : null; };
+  const checks = (name) => $$('input[name="' + name + '"]:checked').map((el) => el.value);
+  return {
+    prenom: val('f-prenom'), nom: val('f-nom'), email: val('f-email'),
+    tel: val('f-tel'), societe: val('f-societe'), notes: val('f-notes'),
+    website: val('f-website'),
+    timeline: radio('timeline') || 'standard',
+    secteur: radio('secteur') || '',
+    universes: checks('universe'),
+    images: {
+      types: checks('imgType'),
+      volume: parseInt($('#imgVolume').value, 10),
+      retouche: radio('imgRetouche') || 'pro',
+      formats: checks('imgFormat'),
+    },
+    video: { type: radio('vidType') || 'social', duree: radio('vidDuree') || 's30', briques: checks('vidBrique') },
+    web: { type: radio('webType') || 'landing', design: radio('webDesign') || 'template', options: checks('webOpt') },
+    branding: { niveau: radio('brandNiveau') || 'scratch', livrables: checks('brandLiv') },
+  };
+}
+
+/* ---------- moteur d'estimation ---------- */
+function estimate(cfg) {
+  const groups = [];
+  let mn = 0, mx = 0;
+  const push = (g, label, pMin, pMax, note) => {
+    g.items.push({ label, min: pMin, max: pMax, note: note || '' });
+    mn += pMin; mx += pMax;
+  };
+
+  if (cfg.universes.includes('images')) {
+    const g = { key: 'images', title: UNI_LABELS.images, items: [] };
+    const q = cfg.images.volume;
+    const per = PRICING.images.perImage[cfg.images.retouche];
+    const disc = q >= 25 ? 0.8 : q >= 10 ? 0.9 : 1;
+    const discTxt = disc < 1 ? ' · remise volume −' + Math.round((1 - disc) * 100) + '% incluse' : '';
+    push(g, q + ' visuel' + (q > 1 ? 's' : '') + ' IA — retouche ' + PRICING.images.retLabels[cfg.images.retouche],
+      round10(q * per[0] * disc), round10(q * per[1] * disc),
+      (cfg.images.types.length ? cfg.images.types.join(', ') : '') + discTxt);
+    if (cfg.images.formats.length) {
+      const sub = [q * per[0] * disc, q * per[1] * disc];
+      const pct = PRICING.images.formatPct * cfg.images.formats.length;
+      push(g, 'Déclinaisons formats (' + cfg.images.formats.join(', ') + ')',
+        round10(sub[0] * pct), round10(sub[1] * pct));
+    }
+    groups.push(g);
+  }
+
+  if (cfg.universes.includes('video')) {
+    const g = { key: 'video', title: UNI_LABELS.video, items: [] };
+    const base = PRICING.video.base[cfg.video.type];
+    const d = PRICING.video.duree[cfg.video.duree];
+    push(g, base.label + ' (' + d.label + ')', round10(base.p[0] * d.mult), round10(base.p[1] * d.mult));
+    cfg.video.briques.forEach((k) => {
+      const b = PRICING.video.briques[k];
+      if (b) push(g, b.label, b.p[0], b.p[1]);
+    });
+    groups.push(g);
+  }
+
+  if (cfg.universes.includes('web')) {
+    const g = { key: 'web', title: UNI_LABELS.web, items: [] };
+    const base = PRICING.web.base[cfg.web.type];
+    const dz = PRICING.web.design[cfg.web.design];
+    push(g, base.label + ' — ' + dz.label, round10(base.p[0] * dz.mult), round10(base.p[1] * dz.mult));
+    cfg.web.options.forEach((k) => {
+      const o = PRICING.web.options[k];
+      if (o) push(g, o.label, o.p[0], o.p[1]);
+    });
+    groups.push(g);
+  }
+
+  if (cfg.universes.includes('branding')) {
+    const g = { key: 'branding', title: UNI_LABELS.branding, items: [] };
+    const nv = PRICING.branding.niveau[cfg.branding.niveau];
+    cfg.branding.livrables.forEach((k) => {
+      const l = PRICING.branding.livrables[k];
+      if (l) push(g, l.label + (nv.mult < 1 ? ' (' + nv.label + ')' : ''), round10(l.p[0] * nv.mult), round10(l.p[1] * nv.mult));
+    });
+    groups.push(g);
+  }
+
+  // ajustement timeline sur le sous-total
+  const adj = [];
+  const tl = PRICING.timeline[cfg.timeline];
+  if (tl && tl.mult !== 1 && mn > 0) {
+    const dMn = round10(mn * (tl.mult - 1));
+    const dMx = round10(mx * (tl.mult - 1));
+    adj.push({
+      label: tl.mult > 1 ? 'Majoration délai urgent (+25%)' : 'Remise planning flexible (−5%)',
+      min: dMn, max: dMx,
+    });
+    mn += dMn; mx += dMx;
+  }
+
+  return { groups, adjustments: adj, min: round10(mn), max: round10(mx) };
+}
+
+/* ---------- rendu de l'aside ---------- */
+const totalAnim = { mn: 0, mx: 0 };
+function renderSummary() {
+  const cfg = collect();
+  const est = estimate(cfg);
+  const box = $('#estItems');
+
+  if (!est.groups.length) {
+    box.innerHTML = '<div class="empty">Sélectionnez vos univers pour voir apparaître votre estimation.</div>';
+  } else {
+    let html = '';
+    est.groups.forEach((g) => {
+      g.items.forEach((it) => {
+        html += '<div class="ei"><span>' + it.label + '</span><b>' + fmtRange(it.min, it.max) + '</b></div>';
+      });
+    });
+    est.adjustments.forEach((a) => {
+      const sign = a.min >= 0 ? '+' : '−';
+      html += '<div class="ei"><span style="color:#E8005A">' + a.label + '</span><b>' + sign + ' ' +
+        fmt(Math.abs(a.min)) + ' – ' + fmt(Math.abs(a.max)) + ' €</b></div>';
+    });
+    box.innerHTML = html;
+  }
+
+  // compteur animé
+  const apply = () => {
+    const txt = est.min <= 0 ? '0 €' : fmtRange(totalAnim.mn, totalAnim.mx);
+    $('#estTotal').textContent = txt;
+    $('#mobTotal').textContent = txt;
+  };
+  if (window.gsap) {
+    gsap.to(totalAnim, { mn: est.min, mx: est.max, duration: 0.6, ease: 'power2.out', onUpdate: apply, overwrite: true });
+  } else {
+    totalAnim.mn = est.min; totalAnim.mx = est.max; apply();
+  }
+  return est;
+}
+
+/* ---------- rendu du récapitulatif (étape 4) ---------- */
+function renderRecap() {
+  const cfg = collect();
+  const est = estimate(cfg);
+
+  const bits = [];
+  const name = (cfg.prenom + ' ' + cfg.nom).trim();
+  if (name) bits.push('<span><b style="color:#fff">' + name + '</b></span>');
+  if (cfg.societe) bits.push('<span>' + cfg.societe + '</span>');
+  if (cfg.email) bits.push('<span>' + cfg.email + '</span>');
+  if (cfg.tel) bits.push('<span>' + cfg.tel + '</span>');
+  if (cfg.secteur) bits.push('<span>Secteur : ' + cfg.secteur + '</span>');
+  bits.push('<span>Délai : ' + PRICING.timeline[cfg.timeline].label + '</span>');
+  $('#recapClient').innerHTML = bits.join('');
+
+  let html = '';
+  est.groups.forEach((g) => {
+    html += '<div class="recap-group"><div class="rg-title">' + g.title + '</div>';
+    g.items.forEach((it) => {
+      html += '<div class="recap-line"><span class="rl-l">' + it.label +
+        (it.note ? '<small>' + it.note + '</small>' : '') +
+        '</span><span class="rl-r">' + fmtRange(it.min, it.max) + '</span></div>';
+    });
+    html += '</div>';
+  });
+  est.adjustments.forEach((a) => {
+    const sign = a.min >= 0 ? '+' : '−';
+    html += '<div class="recap-line"><span class="rl-l" style="color:#E8005A">' + a.label +
+      '</span><span class="rl-r">' + sign + ' ' + fmt(Math.abs(a.min)) + ' – ' + fmt(Math.abs(a.max)) + ' €</span></div>';
+  });
+  $('#recapList').innerHTML = html || '<p style="color:#6E6E72">Aucun univers configuré.</p>';
+  $('#recapTotal').textContent = fmtRange(est.min, est.max);
+}
+
+/* ---------- navigation entre étapes ---------- */
+function setStepper(n) {
+  $$('#stepper .st').forEach((el, i) => {
+    el.classList.toggle('active', i + 1 === n);
+    el.classList.toggle('done', i + 1 < n);
+    el.classList.toggle('clickable', i + 1 <= maxVisited && i + 1 !== n);
+  });
+  $('#stepLine').style.width = ((n - 1) / 4 * 100) + '%';
+}
+
+function showPanels() {
+  const unis = collect().universes;
+  $$('.uni-panel').forEach((p) => p.classList.toggle('on', unis.includes(p.dataset.uni)));
+}
+
+function validateStep(n) {
+  if (n === 1) {
+    const nom = $('#f-nom'), email = $('#f-email');
+    let ok = true;
+    [nom, email].forEach((el) => el.classList.remove('err'));
+    if (!nom.value.trim()) { nom.classList.add('err'); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { email.classList.add('err'); ok = false; }
+    if (!ok) {
+      toast('Renseignez au moins votre nom et un email valide.');
+      if (window.gsap) gsap.fromTo('.step[data-step="1"] .card:first-child', { x: 0 }, { x: 8, duration: 0.07, repeat: 5, yoyo: true, clearProps: 'x' });
+    }
+    return ok;
+  }
+  if (n === 2) {
+    const ok = collect().universes.length > 0;
+    $('#uniWarn').style.display = ok ? 'none' : 'block';
+    if (!ok && window.gsap) gsap.fromTo('#uniWarn', { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    return ok;
+  }
+  return true;
+}
+
+function goStep(n, skipValidate) {
+  if (n === currentStep) return;
+  if (n > currentStep && !skipValidate) {
+    for (let s = currentStep; s < n; s++) if (!validateStep(s)) return;
+  }
+  const from = $('.step[data-step="' + currentStep + '"]');
+  const to = $('.step[data-step="' + n + '"]');
+  const dir = n > currentStep ? 1 : -1;
+
+  if (n === 3) showPanels();
+  if (n === 4) renderRecap();
+  if (n === 5) $('#finalRef').textContent = 'Réf. ' + devisRef;
+
+  currentStep = n;
+  maxVisited = Math.max(maxVisited, n);
+  setStepper(n);
+
+  // boutons
+  $('#btnPrev').style.visibility = n === 1 ? 'hidden' : 'visible';
+  $('#btnNext').style.display = n === 5 ? 'none' : 'inline-flex';
+  $('#btnNext').innerHTML = n === 4
+    ? 'Générer mon devis <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+    : 'Continuer <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  const showTo = () => {
+    from.classList.remove('on');
+    to.classList.add('on');
+    if (window.gsap) {
+      gsap.fromTo(to, { opacity: 0, x: 40 * dir }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', clearProps: 'all' });
+      const cards = $$('.card, .uni-grid .opt, .final-hero > *', to);
+      if (cards.length) gsap.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.07, clearProps: 'all', delay: 0.08 });
+    }
+    const top = $('#config').getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
+  if (window.gsap) {
+    gsap.to(from, { opacity: 0, x: -40 * dir, duration: 0.3, ease: 'power2.in', onComplete: showTo });
+  } else showTo();
+}
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg;
+  if (window.gsap) {
+    gsap.to(t, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out',
+      onStart: () => { t.style.transform = 'translateX(-50%)'; } });
+    clearTimeout(toastT);
+    toastT = setTimeout(() => gsap.to(t, { opacity: 0, duration: 0.4 }), 3200);
+  } else {
+    t.style.opacity = 1; t.style.transform = 'translateX(-50%)';
+    clearTimeout(toastT);
+    toastT = setTimeout(() => { t.style.opacity = 0; }, 3200);
+  }
+}
+
+/* ---------- génération du PDF ---------- */
+function buildPdfHtml(cfg, est) {
+  const today = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  const name = ((cfg.prenom + ' ' + cfg.nom).trim()) || '—';
+
+  let rows = '';
+  est.groups.forEach((g) => {
+    rows += '<div style="margin:22px 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C0003C;font-weight:600">' + g.title + '</div>';
+    g.items.forEach((it) => {
+      rows += '<div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.14);font-size:13.5px">' +
+        '<span style="color:#3a3a3e">' + it.label + (it.note ? '<br><span style="color:#7a7a7e;font-size:11.5px">' + it.note + '</span>' : '') + '</span>' +
+        '<span style="color:#141414;font-weight:600;white-space:nowrap">' + fmtRange(it.min, it.max) + '</span></div>';
+    });
+  });
+  est.adjustments.forEach((a) => {
+    const sign = a.min >= 0 ? '+' : '−';
+    rows += '<div style="display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.14);font-size:13.5px">' +
+      '<span style="color:#C0003C">' + a.label + '</span>' +
+      '<span style="color:#141414;font-weight:600;white-space:nowrap">' + sign + ' ' + fmt(Math.abs(a.min)) + ' – ' + fmt(Math.abs(a.max)) + ' €</span></div>';
+  });
+
+  const infos = [];
+  if (cfg.societe) infos.push(cfg.societe);
+  if (cfg.email) infos.push(cfg.email);
+  if (cfg.tel) infos.push(cfg.tel);
+  if (cfg.secteur) infos.push('Secteur : ' + cfg.secteur);
+  infos.push('Délai souhaité : ' + PRICING.timeline[cfg.timeline].label);
+
+  return '' +
+  '<div style="padding:52px 56px 40px;background:#ffffff;color:#141414;min-height:1123px;position:relative;overflow:hidden">' +
+    '<div style="position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#C0003C,#E8005A)"></div>' +
+    '<div style="position:absolute;top:-140px;right:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,0,90,.08),transparent 65%)"></div>' +
+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative">' +
+      '<div>' +
+        '<div style="font-family:\'Anton\',sans-serif;font-size:26px;letter-spacing:.06em;text-transform:uppercase;color:#141414">Studio<span style="color:#E8005A">.AI</span></div>' +
+        '<div style="color:#6e6e72;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;margin-top:4px">Media Dezign Studio</div>' +
+      '</div>' +
+      '<div style="text-align:right">' +
+        '<div style="font-family:\'Anton\',sans-serif;font-size:34px;text-transform:uppercase;letter-spacing:.03em;background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Devis estimatif</div>' +
+        '<div style="color:#6e6e72;font-size:12px;margin-top:6px">' + devisRef + ' · ' + today + '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div style="margin-top:38px;display:flex;gap:16px">' +
+      '<div style="flex:1;background:rgba(0,0,0,.025);border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:16px 18px">' +
+        '<div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6e6e72;margin-bottom:6px">Client</div>' +
+        '<div style="font-size:15px;font-weight:600;color:#141414">' + name + '</div>' +
+        '<div style="color:#5a5a5e;font-size:12px;margin-top:4px">' + infos.join(' · ') + '</div>' +
+      '</div>' +
+      '<div style="width:220px;background:rgba(232,0,90,.05);border:1px solid rgba(232,0,90,.3);border-radius:12px;padding:16px 18px">' +
+        '<div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6e6e72;margin-bottom:6px">Contact studio</div>' +
+        '<div style="font-size:12px;color:#3a3a3e">contact@mediadezignstudio.ai<br>mediadezignstudio.ai</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div style="margin-top:14px">' + rows + '</div>' +
+
+    '<div style="margin-top:26px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#C0003C,#E8005A);border-radius:14px;padding:18px 24px">' +
+      '<span style="font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#fff">Estimation totale HT</span>' +
+      '<span style="font-family:\'Anton\',sans-serif;font-size:30px;color:#fff">' + fmtRange(est.min, est.max) + '</span>' +
+    '</div>' +
+
+    (cfg.notes ? '<div style="margin-top:22px;background:rgba(0,0,0,.025);border:1px solid rgba(0,0,0,.09);border-radius:12px;padding:14px 18px">' +
+      '<div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6e6e72;margin-bottom:6px">Notes du client</div>' +
+      '<div style="font-size:12.5px;color:#3a3a3e;white-space:pre-wrap">' + cfg.notes.replace(/</g, '&lt;') + '</div></div>' : '') +
+
+    '<div style="margin-top:26px;color:#6e6e72;font-size:10.5px;line-height:1.7">' +
+      '<b style="color:#3a3a3e">Conditions simplifiées</b> — Estimation indicative valable 30 jours, établie à partir du configurateur en ligne. ' +
+      'Le devis définitif est confirmé après un échange sur le périmètre exact du projet. ' +
+      'Deux allers-retours de révisions inclus par livrable. Acompte de 30% à la commande, solde à la livraison. ' +
+      'Fichiers finaux haute définition livrés après règlement complet. Prix hors taxes.' +
+    '</div>' +
+
+    '<div style="margin-top:30px;padding-top:16px;border-top:1px solid rgba(0,0,0,.1);display:flex;justify-content:space-between;color:#6E6E72;font-size:10.5px">' +
+      '<span>Media Dezign Studio — Studio créatif augmenté par l’IA</span>' +
+      '<span>Built to create.</span>' +
+    '</div>' +
+  '</div>';
+}
+
+/* construit le PDF (jsPDF) à partir du template — utilisé pour le téléchargement ET l'envoi email */
+async function buildPdfDoc(cfg, est) {
+  const tpl = $('#pdfTpl');
+  tpl.innerHTML = buildPdfHtml(cfg, est);
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+  const canvas = await html2canvas(tpl, { scale: 2, backgroundColor: '#ffffff', logging: false });
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+  const pageW = 210, pageH = 297;
+  const imgH = canvas.height * pageW / canvas.width;
+
+  if (imgH <= pageH + 4) {
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, pageW, imgH);
+  } else {
+    // découpe en pages A4
+    const pagePx = Math.floor(canvas.width * pageH / pageW);
+    let y = 0, first = true;
+    while (y < canvas.height) {
+      const slice = document.createElement('canvas');
+      slice.width = canvas.width;
+      slice.height = Math.min(pagePx, canvas.height - y);
+      const ctx = slice.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, slice.width, slice.height);
+      ctx.drawImage(canvas, 0, y, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
+      if (!first) pdf.addPage();
+      pdf.addImage(slice.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, pageW, slice.height * pageW / canvas.width);
+      first = false;
+      y += pagePx;
+    }
+  }
+  return pdf;
+}
+
+async function generatePdf() {
+  const btn = $('#btnPdf');
+  const cfg = collect();
+  const est = estimate(cfg);
+  if (!est.groups.length) { toast('Configurez au moins un univers avant de générer le devis.'); return; }
+
+  btn.disabled = true;
+  const oldHtml = btn.innerHTML;
+  btn.innerHTML = 'Génération en cours…';
+
+  try {
+    const pdf = await buildPdfDoc(cfg, est);
+    pdf.save('Devis-' + devisRef + '-MediaDezignStudio.pdf');
+    toast('Devis PDF téléchargé ✨');
+  } catch (err) {
+    console.error(err);
+    toast('Erreur lors de la génération — réessayez.');
+  }
+  btn.disabled = false;
+  btn.innerHTML = oldHtml;
+}
+
+/* ---------- envoi email au studio (Google Apps Script) ---------- */
+// URL de déploiement de la Web App Apps Script (Déployer → Nouveau déploiement → Application Web).
+// À remplacer après le déploiement — voir google-apps-script/Code.gs.
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwG1laF9-4t7mgT_ghvOSGO5BvMgcwvyv5nL3JwbGr_yMuHZ66SfRy5KeqgbC8IbrNvEw/exec';
+
+const isValidEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+async function sendToStudio() {
+  const btn = $('#btnMail');
+  const cfg = collect();
+  const est = estimate(cfg);
+
+  if (!est.groups.length) { toast('Configurez au moins un univers avant l’envoi.'); return; }
+  if (!cfg.nom) { toast('Merci d’indiquer votre nom avant l’envoi.'); return; }
+  if (!isValidEmail(cfg.email)) { toast('Merci d’indiquer un email valide avant l’envoi.'); return; }
+  if (cfg.website) return; // honeypot rempli : on ignore silencieusement (bot)
+
+  if (WEBAPP_URL.indexOf('REMPLACER_PAR_URL_WEBAPP') === 0) {
+    toast('Envoi non configuré — contactez le studio directement.');
+    return;
+  }
+
+  const oldHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = 'Envoi en cours…';
+
+  try {
+    const pdf = await buildPdfDoc(cfg, est);
+    const pdfBase64 = pdf.output('datauristring').split(',')[1];
+    const pdfFilename = 'Devis-' + devisRef + '-MediaDezignStudio.pdf';
+
+    const payload = {
+      website: cfg.website, // honeypot
+      devisRef,
+      prenom: cfg.prenom, nom: cfg.nom, email: cfg.email, tel: cfg.tel,
+      societe: cfg.societe, secteur: cfg.secteur, notes: cfg.notes,
+      timelineLabel: PRICING.timeline[cfg.timeline].label,
+      groups: est.groups.map((g) => ({
+        title: g.title,
+        items: g.items.map((it) => ({ label: it.label, min: it.min, max: it.max, note: it.note || '' })),
+      })),
+      adjustments: est.adjustments.map((a) => ({ label: a.label, min: a.min, max: a.max })),
+      totalMin: est.min, totalMax: est.max,
+      pdfBase64, pdfFilename,
+    };
+
+    await fetch(WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script ne renvoie pas d'en-têtes CORS : réponse opaque, on suppose le succès
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+
+    toast('Devis envoyé au studio ✨ Vous recevrez un accusé de réception par email.');
+  } catch (err) {
+    console.error(err);
+    toast('Erreur lors de l’envoi — réessayez ou contactez-nous directement.');
+  }
+  btn.disabled = false;
+  btn.innerHTML = oldHtml;
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  $('#year').textContent = new Date().getFullYear();
+
+  // lucioles ambiantes
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const box = $('#fireflies');
+  if (box && !reduce) {
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('span');
+      const side = Math.random() < 0.5 ? Math.random() * 10 : 90 + Math.random() * 10;
+      s.style.left = side + '%';
+      s.style.top = (Math.random() * 100) + '%';
+      const size = 2 + Math.random() * 2;
+      s.style.width = size + 'px'; s.style.height = size + 'px';
+      s.style.animationDuration = (14 + Math.random() * 10) + 's';
+      s.style.animationDelay = (Math.random() * 8) + 's';
+      box.appendChild(s);
+    }
+  }
+
+  // slider volume : valeur + remplissage du track
+  const vol = $('#imgVolume');
+  const updVol = () => {
+    $('#imgVolumeVal').textContent = vol.value === '50' ? '50+' : vol.value;
+    vol.style.setProperty('--pct', ((vol.value - vol.min) / (vol.max - vol.min) * 100) + '%');
+  };
+  vol.addEventListener('input', updVol);
+  updVol();
+
+  // recalcul à chaque interaction
+  const form = $('#configForm');
+  form.addEventListener('change', () => { renderSummary(); if (currentStep === 4) renderRecap(); });
+  form.addEventListener('input', (e) => {
+    if (e.target.type === 'range') renderSummary();
+  });
+  renderSummary();
+
+  // navigation
+  $('#btnNext').addEventListener('click', () => goStep(Math.min(5, currentStep + 1)));
+  $('#btnPrev').addEventListener('click', () => goStep(Math.max(1, currentStep - 1), true));
+  $$('#stepper .st').forEach((el) => {
+    el.addEventListener('click', () => {
+      const n = parseInt(el.dataset.go, 10);
+      if (n <= maxVisited) goStep(n, n < currentStep);
+    });
+  });
+
+  $('#btnPdf').addEventListener('click', generatePdf);
+  $('#btnMail').addEventListener('click', sendToStudio);
+
+  // pré-sélection d'univers via l'URL (?uni=web ou ?uni=images,video)
+  try {
+    const uniParam = new URLSearchParams(window.location.search).get('uni');
+    if (uniParam) {
+      uniParam.split(',').forEach((u) => {
+        const cb = $('input[name="universe"][value="' + u.trim() + '"]');
+        if (cb) cb.checked = true;
+      });
+      renderSummary();
+    }
+  } catch (e) {}
+
+  // ---- animations GSAP d'entrée ----
+  if (window.gsap && !reduce) {
+    gsap.registerPlugin(window.ScrollTrigger, window.SplitText);
+
+    // titre en cascade (le span dégradé reste entier : background-clip:text
+    // ne survit pas au découpage en caractères) — après chargement des polices
+    // pour que SplitText mesure les bons glyphes
+    const animTitle = () => {
+    const title = $('#devisTitle');
+    if (title && window.SplitText) {
+      const plain = title.childNodes[0]; // texte "Configurez "
+      const gradSpan = title.querySelector('.grad-txt');
+      const wrap = document.createElement('span');
+      wrap.style.display = 'inline-block';
+      // l'espace de fin du texte serait avalé par l'inline-block : on le préserve
+      wrap.style.marginRight = '0.22em';
+      title.insertBefore(wrap, plain);
+      wrap.appendChild(plain);
+      const split = new SplitText(wrap, { type: 'chars' });
+      gsap.set(split.chars, { yPercent: 110, opacity: 0 });
+      gsap.set(gradSpan, { yPercent: 110, opacity: 0 });
+      gsap.timeline({ delay: 0.1 })
+        .to(split.chars, { yPercent: 0, opacity: 1, duration: 0.85, ease: 'power4.out', stagger: 0.02 })
+        .to(gradSpan, { yPercent: 0, opacity: 1, duration: 0.85, ease: 'power4.out' }, '<0.12');
+    }
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(animTitle);
+    else animTitle();
+
+    gsap.fromTo('.hero .sub, .hero .badges span',
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06, delay: 0.35 });
+
+    gsap.fromTo('#stepper', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.55 });
+    gsap.fromTo('.step[data-step="1"] .card', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12, delay: 0.65 });
+    gsap.fromTo('#asideBox', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: 0.8 });
+  }
+});
+</script>
+</body>
+</html>

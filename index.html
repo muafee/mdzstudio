@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+
+<!-- ============ RGPD — Gestion des cookies (tarteaucitron.js) ============ -->
+<script src="js/tarteaucitron/tarteaucitron.js"></script>
+<script>
+tarteaucitron.init({
+    "privacyUrl": "politique-confidentialite.html",
+    "hashtag": "#cookies",
+    "cookieName": "mds_cookies",
+    "orientation": "bottom",
+    "showAlertSmall": false,
+    "cookieslist": true,
+    "showIcon": true,
+    "iconPosition": "BottomLeft",
+    "DenyAllCta": true,
+    "AcceptAllCta": true,
+    "highPrivacy": true,
+    "handleBrowserDNTRequest": false,
+    "removeCredit": true,
+    "useExternalCss": false,
+    "readmoreLink": "politique-confidentialite.html",
+    "mandatory": true,
+    "iconSrc": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='8.5'/><circle cx='9' cy='9' r='1' fill='%23ffffff' stroke='none'/><circle cx='15' cy='10.5' r='1' fill='%23ffffff' stroke='none'/><circle cx='10' cy='15' r='1' fill='%23ffffff' stroke='none'/><circle cx='15.5' cy='15' r='1' fill='%23ffffff' stroke='none'/></svg>"
+});
+/* Aucun service tiers actif pour le moment (aucun traceur détecté sur le site).
+   Pour activer Google Analytics 4 plus tard, décommenter et renseigner l'ID :
+   tarteaucitron.user.gtagUa = 'G-XXXXXXXXXX';
+   (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+*/
+</script>
+<link rel="stylesheet" href="css/tarteaucitron-override.css">
+<!-- ============ /RGPD ============ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollSmoother.min.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+ *{box-sizing:border-box;margin:0;padding:0}
+ html{scroll-behavior:auto;background:#000}
+ body{background:#000;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+ a{color:inherit;text-decoration:none}
+ img{max-width:100%;display:block}
+ ::selection{background:rgba(232,0,90,.35)}
+ ::-webkit-scrollbar{width:10px}
+ ::-webkit-scrollbar-track{background:#070707}
+ ::-webkit-scrollbar-thumb{background:#1c1c1f;border-radius:6px}
+ ::-webkit-scrollbar-thumb:hover{background:#2a2a2f}
+ @keyframes mdsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+ @keyframes mdsFirefly{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}25%{transform:translate(14px,-20px)}50%{transform:translate(-10px,-34px);opacity:.55}75%{transform:translate(-20px,-10px);opacity:.9}100%{transform:translate(0,0);opacity:0}}
+ #mdsAmbientFireflies span{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(232,0,90,.6),0 0 16px 4px rgba(192,0,60,.3);animation-name:mdsFirefly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+ .mds-step{position:relative;z-index:2}
+ .mds-navlink{position:relative;font-size:14.5px;color:#A7A7A7;text-decoration:none;padding:4px 0;display:inline-block}
+ .mds-navlink>span{display:inline-block;position:relative;color:inherit;transition:color .25s ease;will-change:transform}
+ .mds-navlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(135deg,#C0003C,#E8005A);transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+ .mds-navlink:hover>span,.mds-navlink:focus-visible>span,.mds-navlink.is-active>span{color:#fff}
+ .mds-navlink:hover::after,.mds-navlink:focus-visible::after,.mds-navlink.is-active::after{transform:scaleX(1)}
+ .mds-navlink:focus-visible{outline:none}
+ @media(prefers-reduced-motion:reduce){.mds-navlink::after,.mds-navlink>span{transition:none}}
+ @media(prefers-reduced-motion:reduce){#mdsAmbientFireflies{display:none}}
+ @media(max-width:980px){
+   .mds-hero-inner{grid-template-columns:1fr !important}
+   .mds-hero-visual{order:-1;max-width:560px;margin:0 auto;justify-self:center}
+   .mds-services{grid-template-columns:1fr 1fr !important}
+   .mds-pillars{grid-template-columns:1fr 1fr !important}
+   .mds-port{grid-template-columns:1fr 1fr !important}
+ }
+ @media(max-width:860px){
+   .mds-offers{grid-template-columns:1fr !important}
+   .mds-about{grid-template-columns:1fr !important}
+   .mds-contact{grid-template-columns:1fr !important}
+   .mds-tools{grid-template-columns:1fr !important}
+ }
+ @media(max-width:760px){
+   .mds-navlinks{display:none !important}
+   .mds-nav-cta-btn{display:none !important}
+   .mds-burger{display:inline-flex !important}
+   .mds-navlinks.open{display:flex !important;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:rgba(8,8,9,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:8px 0}
+   .mds-navlinks.open a{padding:14px 28px;width:100%}
+   .mds-navlinks.open .mds-navlink::after{display:none}
+ }
+ @media(max-width:640px){
+   .mds-services{grid-template-columns:1fr !important}
+   .mds-pillars{grid-template-columns:1fr !important}
+   .mds-port{grid-template-columns:1fr !important}
+   .mds-row{grid-template-columns:1fr !important}
+   .mds-step{grid-template-columns:60px 1fr !important;gap:16px !important}
+   #mdsProcessLine{left:29px !important}
+ }
+ @media(prefers-reduced-motion:reduce){
+   html{scroll-behavior:auto}
+   *{animation:none !important}
+ }
+</style>
+</helmet>
+
+<div style="position:relative;width:100%">
+
+<sc-if value="{{ grainOn }}" hint-placeholder-val="{{ true }}">
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.04;mix-blend-mode:screen;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+</sc-if>
+
+<div id="mdsAmbientFireflies" aria-hidden="true" style="position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden"></div>
+
+<!-- ============ HEADER ============ -->
+<header id="mds-header" style="position:fixed;top:0;left:0;right:0;z-index:50;height:74px;border-bottom:1px solid transparent;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px;height:74px;display:flex;align-items:center;justify-content:space-between">
+    <a href="#mds-top" aria-label="Media Dezign Studio - accueil" style="display:flex;align-items:center;gap:11px">
+      <img src="assets/logo-md-white.webp" alt="Media Dezign Studio" style="height:30px;width:auto;filter:drop-shadow(0 0 10px rgba(232,0,90,.35))">
+      <span style="font-family:'Anton',sans-serif;font-size:21px;letter-spacing:.06em;text-transform:uppercase">Studio<span style="color:#E8005A">.AI</span></span>
+    </a>
+
+    <nav class="mds-navlinks {{ menuClass }}" aria-label="Navigation principale" style="display:flex;gap:30px;align-items:center">
+      <a href="#services" onClick="{{ closeMenu }}" class="mds-navlink"><span>Services</span></a>
+      <a href="#portfolio" onClick="{{ closeMenu }}" class="mds-navlink"><span>Portfolio</span></a>
+      <a href="#about" onClick="{{ closeMenu }}" class="mds-navlink"><span>À propos</span></a>
+      <a href="#process" onClick="{{ closeMenu }}" class="mds-navlink"><span>Process</span></a>
+      <a href="#devis" onClick="{{ closeMenu }}" class="mds-navlink"><span>Devis</span></a>
+      <a href="#contact" onClick="{{ closeMenu }}" class="mds-navlink"><span>Contact</span></a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="mds-nav-cta-btn mds-magnetic" href="#contact" style="display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 26px rgba(192,0,60,.30);transition:box-shadow .3s" style-hover="box-shadow:0 12px 34px rgba(232,0,90,.5)">Démarrer un projet
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      <button class="mds-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="display:none;width:42px;height:42px;border:1px solid rgba(255,255,255,.14);border-radius:11px;background:rgba(255,255,255,.03);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px">
+        <span style="display:block;width:18px;height:2px;background:#fff;border-radius:2px"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;border-radius:2px"></span>
+        <span style="display:block;width:18px;height:2px;background:#fff;border-radius:2px"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+<span id="mds-top"></span>
+
+<!-- ============ HERO ============ -->
+<section style="position:relative;min-height:100vh;display:flex;align-items:center;padding-top:74px;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:62px 62px;-webkit-mask-image:radial-gradient(ellipse at 72% 50%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 72% 50%,#000 0%,transparent 70%)"></div>
+
+  <div class="mds-hero-inner" style="position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center">
+    <div>
+      <span style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:20px">
+        <span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Studio créatif augmenté par l'IA</span>
+      <h1 id="mdsHeroTitle" style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(56px,9.5vw,124px);line-height:1;letter-spacing:.005em;margin:4px 0 0">
+        <span id="mdsLine1" style="display:block;overflow:hidden">Built</span>
+        <span style="display:block;overflow:hidden"><span id="mdsWordTo" style="display:inline-block">to</span> <span id="mdsCreateWord" style="display:inline-block;background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">create</span></span>
+      </h1>
+      <p style="color:#fff;font-size:clamp(16px,1.8vw,20px);max-width:48ch;margin-top:24px;font-weight:500">Studio créatif IA spécialisé en images, vidéos, design, sites web et contenus visuels nouvelle génération.</p>
+      <p style="color:#A7A7A7;max-width:52ch;margin-top:14px;font-size:15.5px">Je combine direction artistique, développement web et intelligence artificielle avancée pour créer des expériences visuelles puissantes, modernes et mémorables.</p>
+      <p style="margin-top:22px;color:#6E6E72;font-size:13px;letter-spacing:.05em;text-transform:uppercase"><b style="color:#A7A7A7">Images IA</b> · Retouche · Vidéo · Motion · <b style="color:#A7A7A7">Sites web</b> · Branding · Contenu digital</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px">
+        <a class="mds-magnetic" href="#contact" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:box-shadow .3s" style-hover="box-shadow:0 12px 40px rgba(232,0,90,.5)">Démarrer un projet
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <a href="#services" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.16);transition:transform .2s,border-color .2s,background .3s" style-hover="transform:translateY(-2px);border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)">Voir les services</a>
+      </div>
+      <p style="margin-top:28px;font-size:12.5px;letter-spacing:.3em;text-transform:uppercase;color:#6E6E72">mediadezignstudio.ai</p>
+    </div>
+
+    <div class="mds-hero-visual" style="position:relative;display:grid;place-items:center">
+      <video id="mdsHeroVideo" autoplay muted playsinline preload="auto" aria-label="Rendu cinématique Media Dezign Studio" style="width:100%;height:auto;border-radius:18px;background:#000;animation:mdsFloat 7s ease-in-out infinite;-webkit-mask:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect">
+        <source src="assets/hero-video.mp4" type="video/mp4">
+      </video>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;border-radius:18px;background:radial-gradient(ellipse at center,transparent 55%,rgba(5,5,5,.55) 100%)"></div>
+      <img id="mdsHeroFallback" src="assets/hero-md.webp" alt="Media Dezign Studio" style="display:none;width:100%;height:auto;border-radius:18px;filter:drop-shadow(0 30px 70px rgba(0,0,0,.6))">
+      <button id="mdsHeroSound" aria-label="Activer le son" aria-pressed="false" style="position:absolute;right:16px;bottom:16px;z-index:3;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.14);background:rgba(10,10,10,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#A7A7A7;cursor:pointer;transition:color .2s,border-color .2s,transform .2s" style-hover="color:#fff;border-color:rgba(232,0,90,.5);transform:scale(1.06)">
+        <svg id="mdsHeroSoundIcon" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+      </button>
+      <div id="mdsFireflies" aria-hidden="true" style="position:absolute;inset:-90px;pointer-events:none;z-index:1;opacity:0;transition:opacity 1.6s ease"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Services</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2;letter-spacing:.01em">Des services créatifs<br><span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">pour donner de l'impact</span> à vos projets.</h2>
+    <p data-reveal style="color:#A7A7A7;max-width:62ch;font-size:clamp(15px,1.5vw,17px);margin-top:18px">Media Dezign Studio accompagne marques, entreprises, indépendants et particuliers dans la création de contenus visuels, digitaux et multimédias sur mesure.</p>
+
+    <div class="mds-services" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px">
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Création d'images IA</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Visuels réalistes, artistiques ou publicitaires via des workflows IA avancés : campagnes, réseaux, concepts produits, visuels de marque, éditorial.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Génération · Direction artistique · Déclinaisons</p>
+      </article>
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><path d="M3 17l4-4 3 3 5-6 6 7"/><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="8" r="1.6"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Retouche &amp; compositing</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Correction, détourage, photomontage, intégration produit, packshot et création de scènes pour un rendu propre et premium.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Détourage · Photomontage · Packshot</p>
+      </article>
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Vidéo &amp; motion content</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Contenus vidéo, animations, storyboards, habillages et séquences motion design pour dynamiser votre communication.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Motion · Habillage · Contenus courts</p>
+      </article>
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h6M6 11h9"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Sites web &amp; interfaces</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Sites vitrines, landing pages et interfaces responsive — forte exigence design <b style="color:#fff;font-weight:600">et</b> intégration technique réelle.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Webdesign · UX/UI · Intégration</p>
+      </article>
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Branding &amp; direction artistique</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Univers visuels cohérents : logo, charte, couleurs, typographie, déclinaisons et supports digitaux.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Identité · Charte · Cohérence</p>
+      </article>
+      <article data-reveal style="background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:transform .3s,border-color .3s,background .3s" style-hover="transform:translateY(-5px);border-color:rgba(232,0,90,.45);background:linear-gradient(180deg,rgba(232,0,90,.06),rgba(255,255,255,.012))">
+        <div style="width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:rgba(232,0,90,.10);border:1px solid rgba(232,0,90,.22)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#E8005A;stroke-width:1.8;fill:none"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:8px">Workflows &amp; automatisation IA</h3>
+        <p style="color:#A7A7A7;font-size:14.5px">Pipelines créatifs sur mesure pour accélérer la production visuelle et éditoriale, sans perdre l'exigence du design.</p>
+        <p style="margin-top:14px;font-size:12px;letter-spacing:.04em;color:#6E6E72">Pipelines · Outils sur mesure · Production</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILIERS ============ -->
+<section id="why" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Pourquoi le studio</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Un profil hybride entre<br>artiste, <span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">développeur</span> et créateur IA.</h2>
+    <p data-reveal style="color:#A7A7A7;max-width:64ch;font-size:clamp(15px,1.5vw,17px);margin-top:18px">La vision d'un artiste, la précision d'un développeur et la puissance des outils IA. Une combinaison qui permet de créer plus vite, plus ambitieux et plus personnalisé — sans jamais perdre l'exigence humaine du design.</p>
+    <div class="mds-pillars" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px">
+      <div data-reveal style="padding:26px 24px;border-left:2px solid rgba(232,0,90,.5);background:rgba(255,255,255,.015);border-radius:0 12px 12px 0"><div style="font-family:'Anton',sans-serif;font-size:32px;color:#E8005A;line-height:1">01</div><h3 style="font-size:17px;margin:12px 0 8px">Design d'abord</h3><p style="color:#A7A7A7;font-size:14px">Composition, lumière, rythme, typographie, contraste et impact avant tout.</p></div>
+      <div data-reveal style="padding:26px 24px;border-left:2px solid rgba(232,0,90,.5);background:rgba(255,255,255,.015);border-radius:0 12px 12px 0"><div style="font-family:'Anton',sans-serif;font-size:32px;color:#E8005A;line-height:1">02</div><h3 style="font-size:17px;margin:12px 0 8px">IA maîtrisée</h3><p style="color:#A7A7A7;font-size:14px">L'IA comme outil créatif pro, avec des workflows contrôlés et une direction artistique claire.</p></div>
+      <div data-reveal style="padding:26px 24px;border-left:2px solid rgba(232,0,90,.5);background:rgba(255,255,255,.015);border-radius:0 12px 12px 0"><div style="font-family:'Anton',sans-serif;font-size:32px;color:#E8005A;line-height:1">03</div><h3 style="font-size:17px;margin:12px 0 8px">Vision technique</h3><p style="color:#A7A7A7;font-size:14px">Un vrai développement web qui transforme les idées en expériences concrètes et fonctionnelles.</p></div>
+      <div data-reveal style="padding:26px 24px;border-left:2px solid rgba(232,0,90,.5);background:rgba(255,255,255,.015);border-radius:0 12px 12px 0"><div style="font-family:'Anton',sans-serif;font-size:32px;color:#E8005A;line-height:1">04</div><h3 style="font-size:17px;margin:12px 0 8px">Production complète</h3><p style="color:#A7A7A7;font-size:14px">Image, vidéo, web, retouche, branding, motion : un seul studio pour un univers cohérent.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Process</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Un process clair,<br><span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">créatif et efficace.</span></h2>
+    <div id="mdsProcessTrack" style="margin-top:46px;position:relative">
+      <div id="mdsProcessLine" aria-hidden="true" style="position:absolute;left:-20px;top:0;width:2px;height:0%;background:linear-gradient(180deg,#C0003C,#E8005A);border-radius:2px;pointer-events:none"></div>
+      <div class="mds-step" data-reveal style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:28px 0;border-top:1px solid #1A1A1A;align-items:start"><div style="font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(232,0,90,.55)">01</div><div><h3 style="font-size:20px;margin-bottom:6px">Échange</h3><p style="color:#A7A7A7;font-size:15px;max-width:62ch">On définit votre objectif, votre cible, votre univers, vos contraintes et le rendu attendu.</p></div></div>
+      <div class="mds-step" data-reveal style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:28px 0;border-top:1px solid #1A1A1A;align-items:start"><div style="font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(232,0,90,.55)">02</div><div><h3 style="font-size:20px;margin-bottom:6px">Direction artistique</h3><p style="color:#A7A7A7;font-size:15px;max-width:62ch">Je construis une intention visuelle claire : moodboard, style, couleurs, typographie et premières pistes.</p></div></div>
+      <div class="mds-step" data-reveal style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:28px 0;border-top:1px solid #1A1A1A;align-items:start"><div style="font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(232,0,90,.55)">03</div><div><h3 style="font-size:20px;margin-bottom:6px">Production</h3><p style="color:#A7A7A7;font-size:15px;max-width:62ch">Création des visuels, vidéos, maquettes ou interfaces avec les meilleurs outils adaptés au projet.</p></div></div>
+      <div class="mds-step" data-reveal style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:28px 0;border-top:1px solid #1A1A1A;align-items:start"><div style="font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(232,0,90,.55)">04</div><div><h3 style="font-size:20px;margin-bottom:6px">Ajustements</h3><p style="color:#A7A7A7;font-size:15px;max-width:62ch">Retours, corrections, affinage du rendu et optimisation finale.</p></div></div>
+      <div class="mds-step" data-reveal style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:28px 0;border-top:1px solid #1A1A1A;border-bottom:1px solid #1A1A1A;align-items:start"><div style="font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(232,0,90,.55)">05</div><div><h3 style="font-size:20px;margin-bottom:6px">Livraison</h3><p style="color:#A7A7A7;font-size:15px;max-width:62ch">Fichiers propres, exploitables et adaptés à vos supports : web, réseaux sociaux, impression ou vidéo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Portfolio</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Des créations pensées<br>pour <span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">l'impact.</span></h2>
+    <p data-reveal style="color:#A7A7A7;max-width:62ch;font-size:clamp(15px,1.5vw,17px);margin-top:18px">Images générées par IA, campagnes visuelles, sites web, retouches, motion design et identités graphiques.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+      <sc-for list="{{ filterItems }}" as="f" hint-placeholder-count="5">
+        <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+
+    <div class="mds-port" id="mdsPortGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;perspective:1000px">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+        <article class="mds-pcard" data-portal="{{ p.portal }}" style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);cursor:pointer;background:#0A0A0A;transition:box-shadow .35s;will-change:transform" style-hover="box-shadow:0 18px 50px rgba(192,0,60,.28)">
+          
+          <img class="mds-pcard-base" src="{{ p.img }}" alt="{{ p.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform,opacity">
+          
+          <img class="mds-pcard-hover" src="{{ p.hoverImg }}" alt="{{ p.title }} details" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:transform,opacity">
+          
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.85),transparent 60%);pointer-events:none"></div>
+          
+          <div class="mds-pcard-content" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;pointer-events:none;will-change:transform">
+            <span class="mds-pcard-tag" style="align-self:flex-start;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(232,0,90,.18);border:1px solid rgba(232,0,90,.4);color:#fff;margin-bottom:8px;transition:background .3s, border-color .3s">{{ p.tag }}</span>
+            <h4 style="font-size:16px;font-weight:600">{{ p.title }}</h4>
+            <span style="display:inline-flex;align-items:center;gap:7px;margin-top:7px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#E8005A;font-weight:600">Entrer dans le portail
+              <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;stroke-width:2.4;fill:none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          
+        </article>
+      </sc-for>
+    </div>
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin-top:34px">
+      <a class="mds-magnetic" href="portfolio.html" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 30px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:box-shadow .3s" style-hover="box-shadow:0 12px 40px rgba(232,0,90,.5)">Explorer le portfolio immersif
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      <span style="font-size:13px;color:#6E6E72">6 portails · 6 dimensions 3D interactives</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUTILS & TECH ============ -->
+<section id="tools" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Sous le capot</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Un arsenal créatif<br><span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">maîtrisé de bout en bout.</span></h2>
+    <p data-reveal style="color:#A7A7A7;max-width:62ch;font-size:clamp(15px,1.5vw,17px);margin-top:18px">Génération locale sur GPU, modèles cloud, suite créative et stack web — chaque outil choisi pour servir le rendu, jamais l'inverse.</p>
+    <div class="mds-tools" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px">
+      <div data-reveal style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 24px">
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8005A;font-weight:600;margin-bottom:16px">Génération &amp; image IA</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px">
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">ComfyUI</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Flux</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">SDXL</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Stable Diffusion</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">GPT Image</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Seedance</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Kling</span>
+        </div>
+        <p style="color:#6E6E72;font-size:13px;margin-top:14px">Pipeline local sur station GPU dédiée + cloud selon le besoin.</p>
+      </div>
+      <div data-reveal style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 24px">
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8005A;font-weight:600;margin-bottom:16px">LLM &amp; automatisation</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px">
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Claude</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">GPT</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Gemini</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Ollama (local)</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Skills sur mesure</span>
+        </div>
+        <p style="color:#6E6E72;font-size:13px;margin-top:14px">Outils et automatisations conçus pour accélérer la production.</p>
+      </div>
+      <div data-reveal style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 24px">
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8005A;font-weight:600;margin-bottom:16px">Création &amp; motion</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px">
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Photoshop</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Illustrator</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">After Effects</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Premiere Pro</span>
+        </div>
+        <p style="color:#6E6E72;font-size:13px;margin-top:14px">Suite Adobe + scripts ExtendScript pour industrialiser le motion.</p>
+      </div>
+      <div data-reveal style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 24px">
+        <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8005A;font-weight:600;margin-bottom:16px">Web &amp; déploiement</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px">
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">HTML / CSS / JS</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Symfony / Twig</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Vercel</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Railway</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Cloudflare R2</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Supabase</span>
+          <span style="padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);font-size:13.5px;color:#cfcfcf">Docker</span>
+        </div>
+        <p style="color:#6E6E72;font-size:13px;margin-top:14px">De l'intégration au déploiement, un seul interlocuteur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFRES ============ -->
+<section id="offers" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Prestations</span>
+    <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Des prestations adaptées<br>à <span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">chaque besoin.</span></h2>
+    <div class="mds-offers" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px">
+      <div data-reveal style="display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:30px 26px">
+        <h3 style="font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:0.1em">Starter Visual</h3>
+        <p style="color:#A7A7A7;font-size:14.5px;margin-top:12px">Des visuels pro rapides pour vos réseaux et annonces : 3 à 5 visuels, DA simple, déclinaisons social et retouches.</p>
+        <ul style="list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px;flex:1">
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>3 à 5 visuels haute qualité</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Déclinaisons réseaux sociaux</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Retouches incluses</li>
+        </ul>
+        <a href="devis.html?uni=images" style="margin-top:22px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:999px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.16);transition:border-color .2s,background .3s" style-hover="border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)">Demander un devis</a>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;background:radial-gradient(120% 100% at 50% 0%,rgba(232,0,90,.12),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(232,0,90,.35);border-radius:18px;padding:30px 26px;position:relative">
+        <span style="position:absolute;top:-11px;left:26px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:linear-gradient(135deg,#C0003C,#E8005A);color:#fff;font-weight:600">Le plus demandé</span>
+        <h3 style="font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:0.1em">Identité &amp; contenu</h3>
+        <p style="color:#A7A7A7;font-size:14.5px;margin-top:12px">Un univers visuel cohérent autour de votre marque : moodboard, charte, déclinaisons et contenus prêts à publier.</p>
+        <ul style="list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px;flex:1">
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Moodboard &amp; direction artistique</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Charte &amp; déclinaisons</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Pack de contenus visuels</li>
+        </ul>
+        <a href="devis.html?uni=branding,images" style="margin-top:22px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 26px rgba(192,0,60,.30);transition:transform .2s,box-shadow .3s" style-hover="transform:translateY(-2px);box-shadow:0 12px 34px rgba(232,0,90,.5)">Demander un devis</a>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:30px 26px">
+        <h3 style="font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:0.1em">Site &amp; présence digitale</h3>
+        <p style="color:#A7A7A7;font-size:14.5px;margin-top:12px">Site vitrine ou landing page, visuels sur mesure et intégration technique réelle — du concept à la mise en ligne.</p>
+        <ul style="list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px;flex:1">
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Design &amp; UX sur mesure</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Visuels &amp; contenus intégrés</li>
+          <li style="color:#cfcfcf;font-size:14px;display:flex;gap:9px"><span style="color:#E8005A">›</span>Intégration &amp; mise en ligne</li>
+        </ul>
+        <a href="devis.html?uni=web" style="margin-top:22px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:999px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.16);transition:border-color .2s,background .3s" style-hover="border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)">Demander un devis</a>
+      </div>
+    </div>
+    <p data-reveal style="margin-top:18px;font-size:13px;color:#6E6E72">Tarifs sur devis — chaque projet est étudié et chiffré sur mesure.</p>
+  </div>
+</section>
+
+<!-- ============ DEVIS PERSONNALISÉ ============ -->
+<section id="devis" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <div class="mds-about" style="display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center">
+      <div>
+        <span data-reveal style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Devis personnalisé</span>
+        <h2 data-reveal style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Votre projet, chiffré<br><span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">en 3 minutes.</span></h2>
+        <p data-reveal style="color:#A7A7A7;max-width:56ch;font-size:clamp(15px,1.5vw,17px);margin-top:18px">Pas de formulaire ennuyeux : un configurateur interactif. Composez votre projet — images IA, vidéo, site web, branding — et regardez l'estimation se calculer en temps réel. À la fin, votre devis PDF se génère instantanément.</p>
+        <ul data-reveal style="list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px">
+          <li style="color:#cfcfcf;font-size:14.5px;display:flex;gap:10px;align-items:baseline"><span style="color:#E8005A">›</span>Configurateur en 5 étapes, adapté à vos besoins</li>
+          <li style="color:#cfcfcf;font-size:14.5px;display:flex;gap:10px;align-items:baseline"><span style="color:#E8005A">›</span>Fourchette de prix transparente, en direct</li>
+          <li style="color:#cfcfcf;font-size:14.5px;display:flex;gap:10px;align-items:baseline"><span style="color:#E8005A">›</span>Devis PDF design téléchargeable immédiatement</li>
+          <li style="color:#cfcfcf;font-size:14.5px;display:flex;gap:10px;align-items:baseline"><span style="color:#E8005A">›</span>Sans engagement — réponse sous 24 à 48h</li>
+        </ul>
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-top:30px">
+          <a id="mdsDevisCta" class="mds-magnetic" href="devis.html" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:box-shadow .3s" style-hover="box-shadow:0 12px 40px rgba(232,0,90,.5)">Configurer mon devis
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+
+      <div data-reveal id="mdsDevisMock" style="position:relative">
+        <div aria-hidden="true" style="position:absolute;inset:-40px;background:radial-gradient(ellipse at center,rgba(232,0,90,.10),transparent 65%);pointer-events:none"></div>
+        <div style="position:relative;background:radial-gradient(120% 100% at 50% 0%,rgba(232,0,90,.10),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(232,0,90,.3);border-radius:20px;padding:28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+            <span style="font-family:'Anton',sans-serif;font-size:17px;letter-spacing:.06em;text-transform:uppercase">Votre estimation</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#E8005A;font-weight:600"><span style="width:7px;height:7px;border-radius:50%;background:#E8005A;box-shadow:0 0 8px rgba(232,0,90,.9)"></span>En direct</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="mds-devis-row" style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px dashed rgba(255,255,255,.08)">
+              <span class="mds-devis-check" style="flex:none;width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:#0A0A0A;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span style="flex:1;font-size:14px;color:#cfcfcf">10 visuels IA · retouche pro</span>
+              <b style="font-size:13.5px;white-space:nowrap">550 – 900 €</b>
+            </div>
+            <div class="mds-devis-row" style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px dashed rgba(255,255,255,.08)">
+              <span class="mds-devis-check" style="flex:none;width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:#0A0A0A;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span style="flex:1;font-size:14px;color:#cfcfcf">Réel 30s réseaux sociaux</span>
+              <b style="font-size:13.5px;white-space:nowrap">250 – 500 €</b>
+            </div>
+            <div class="mds-devis-row" style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px dashed rgba(255,255,255,.08)">
+              <span class="mds-devis-check" style="flex:none;width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:#0A0A0A;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span style="flex:1;font-size:14px;color:#cfcfcf">Landing page sur-mesure</span>
+              <b style="font-size:13.5px;white-space:nowrap">950 – 1 890 €</b>
+            </div>
+            <div class="mds-devis-row" style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px dashed rgba(255,255,255,.08)">
+              <span class="mds-devis-check" style="flex:none;width:20px;height:20px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:#0A0A0A;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span style="flex:1;font-size:14px;color:#cfcfcf">Animation de logo</span>
+              <b style="font-size:13.5px;white-space:nowrap">120 – 300 €</b>
+            </div>
+          </div>
+          <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(232,0,90,.25);display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A7A7A7">Fourchette estimée</span>
+            <span id="mdsDevisTotal" style="font-family:'Anton',sans-serif;font-size:clamp(24px,2.4vw,30px);background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">1 870 – 3 590 €</span>
+          </div>
+          <p style="margin-top:10px;color:#6E6E72;font-size:12px">Exemple de configuration — devis PDF généré instantanément.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div class="mds-about" style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+    <div data-reveal>
+      <span style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>À propos</span>
+      <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(32px,4.6vw,56px);line-height:1.2">Je crée à la frontière du <span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">design, du code</span> et de l'IA.</h2>
+      <p style="color:#A7A7A7;margin-top:18px;font-size:16px">Media Dezign Studio est né d'une passion pour la création sous toutes ses formes : design graphique, image, vidéo, développement web et intelligence artificielle.</p>
+      <p style="color:#A7A7A7;margin-top:14px;font-size:16px">Mon approche mêle sens artistique, maîtrise technique et exploration des nouveaux outils IA pour produire des contenus modernes, impactants et adaptés aux besoins réels des clients.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px">
+        <a class="mds-magnetic" href="#contact" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:box-shadow .3s" style-hover="box-shadow:0 12px 40px rgba(232,0,90,.5)">Travaillons ensemble
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+    <div data-reveal style="aspect-ratio:4/5;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:#0A0A0A;overflow:hidden">
+      <img src="assets/about-visual.webp" alt="Monogramme Media Dezign Studio" style="width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section style="position:relative;z-index:2;padding:clamp(40px,8vh,90px) 0">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <div data-reveal style="position:relative;border-radius:24px;overflow:hidden;padding:clamp(40px,7vw,76px);background:radial-gradient(120% 140% at 0% 0%,rgba(232,0,90,.18),transparent 55%),#0A0A0A;border:1px solid rgba(232,0,90,.22);text-align:center">
+      <h2 style="font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(30px,5vw,56px);line-height:1.2">Vous avez une idée ?<br><span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">Donnons-lui une forme forte.</span></h2>
+      <p style="color:#A7A7A7;max-width:60ch;margin:18px auto 0">Image, vidéo, site web, identité visuelle ou projet IA : parlons de votre besoin et construisons un rendu à la hauteur de votre ambition.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;justify-content:center">
+        <a class="mds-magnetic" href="#contact" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 30px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:box-shadow .3s" style-hover="box-shadow:0 12px 40px rgba(232,0,90,.5)">Démarrer un projet
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="position:relative;z-index:2;padding:clamp(72px,11vh,128px) 0;scroll-margin-top:90px">
+  <div class="mds-contact" style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start">
+    <div data-reveal>
+      <span style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500;margin-bottom:18px"><span style="width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block"></span>Contact</span>
+      <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.2vw,64px);line-height:1.2">Parlons de<br>votre <span style="background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">projet.</span></h2>
+      <p style="color:#A7A7A7;margin-top:18px;max-width:42ch">Décrivez votre besoin en quelques lignes. Je reviens vers vous rapidement avec une première piste et une estimation.</p>
+      <a href="mailto:contact@mediadezignstudio.ai" style="display:inline-block;margin-top:24px;font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,32px);letter-spacing:.01em;color:#fff" style-hover="color:#E8005A">contact@mediadezignstudio.ai</a>
+    </div>
+    <form data-reveal onSubmit="{{ onSubmit }}" style="display:grid;gap:14px">
+      <div class="mds-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div><label for="mds-name" style="display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px">Nom</label><input id="mds-name" type="text" placeholder="Votre nom" style="width:100%;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;transition:border-color .2s" style-focus="border-color:#E8005A;outline:none"></div>
+        <div><label for="mds-email" style="display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px">Email</label><input id="mds-email" type="email" placeholder="vous@exemple.com" style="width:100%;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;transition:border-color .2s" style-focus="border-color:#E8005A;outline:none"></div>
+      </div>
+      <div class="mds-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div><label for="mds-type" style="display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px">Type de projet</label><select id="mds-type" style="width:100%;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;appearance:none;-webkit-appearance:none;transition:border-color .2s" style-focus="border-color:#E8005A;outline:none"><option>Images IA</option><option>Retouche &amp; compositing</option><option>Vidéo &amp; motion</option><option>Site web</option><option>Branding</option><option>Workflow / automatisation IA</option><option>Autre</option></select></div>
+        <div><label for="mds-budget" style="display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px">Budget indicatif</label><select id="mds-budget" style="width:100%;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;appearance:none;-webkit-appearance:none;transition:border-color .2s" style-focus="border-color:#E8005A;outline:none"><option>À définir</option><option>&lt; 500 €</option><option>500 – 1500 €</option><option>1500 – 5000 €</option><option>&gt; 5000 €</option></select></div>
+      </div>
+      <div><label for="mds-msg" style="display:block;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#6E6E72;margin-bottom:7px">Votre projet</label><textarea id="mds-msg" placeholder="Décrivez votre besoin, vos références, vos délais…" style="width:100%;min-height:130px;resize:vertical;background:#0A0A0A;border:1px solid rgba(255,255,255,.10);border-radius:11px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;padding:13px 15px;transition:border-color .2s" style-focus="border-color:#E8005A;outline:none"></textarea></div>
+      <input type="text" id="mds-website" name="website" value="" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" id="mds-submit-btn" style="justify-self:start;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;border:1px solid transparent;cursor:pointer;background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32);transition:transform .2s,box-shadow .3s" style-hover="transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,0,90,.5)"><span id="mds-submit-label">Envoyer la demande</span>
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+      <div id="mds-form-status" style="font-size:13.5px;min-height:18px"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="position:relative;z-index:2;border-top:1px solid #1A1A1A;padding:48px 0 34px">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 28px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center">
+      <a href="#mds-top" style="display:flex;align-items:center;gap:11px">
+        <img src="assets/logo-md-white.webp" alt="Media Dezign Studio" style="height:28px;width:auto">
+        <span style="font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase">Studio<span style="color:#E8005A">.AI</span></span>
+      </a>
+      <nav style="display:flex;gap:22px;flex-wrap:wrap" aria-label="Liens de pied de page">
+        <a href="#services" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Services</a>
+        <a href="#portfolio" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Portfolio</a>
+        <a href="#process" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Process</a>
+        <a href="devis.html" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Devis personnalisé</a>
+        <a href="#about" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">À propos</a>
+        <a href="#contact" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Contact</a>
+        <a href="politique-confidentialite.html" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Confidentialité</a>
+        <a href="#cookies" style="color:#A7A7A7;font-size:14px;transition:color .2s" style-hover="color:#fff">Gestion des cookies</a>
+      </nav>
+    </div>
+    <p style="margin-top:26px;color:#6E6E72;font-size:13px;text-align:center">© {{ year }} Media Dezign Studio — mediadezignstudio.ai · Studio créatif augmenté par l'IA</p>
+  </div>
+</footer>
+
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;grainOn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ambiance&quot;}}">
+// URL de déploiement de la Web App Apps Script (même script/URL que le devis, voir google-apps-script/Code.gs)
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwG1laF9-4t7mgT_ghvOSGO5BvMgcwvyv5nL3JwbGr_yMuHZ66SfRy5KeqgbC8IbrNvEw/exec';
+const isValidEmailContact = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+class Component extends DCLogic {
+  state = { filter: 'all', menuOpen: false };
+
+  componentDidMount() {
+    // au refresh, toujours repartir du haut : évite que ScrollSmoother/ScrollTrigger
+    // s'initialisent sur une position scrollée et décalent toutes les animations.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    // lucioles ambiantes sur les côtés du body (permanentes, subtiles)
+    const reduce0 = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ambientBox = document.getElementById('mdsAmbientFireflies');
+    if (ambientBox && !reduce0) {
+      const n = 20;
+      for (let i = 0; i < n; i++) {
+        const s = document.createElement('span');
+        const side = Math.random() < 0.5 ? Math.random() * 10 : 90 + Math.random() * 10; // % — bord gauche ou droit
+        const top = Math.random() * 100;
+        const size = 2 + Math.random() * 2;
+        const dur = 14 + Math.random() * 10;
+        const delay = Math.random() * 8;
+        s.style.left = side + '%';
+        s.style.top = top + '%';
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.animationDuration = dur + 's';
+        s.style.animationDelay = delay + 's';
+        ambientBox.appendChild(s);
+      }
+    }
+
+    // header scroll style
+    this._onScroll = () => {
+      const h = document.getElementById('mds-header');
+      if (!h) return;
+      if (window.scrollY > 20) {
+        h.style.background = 'rgba(7,7,8,.72)';
+        h.style.borderBottomColor = 'rgba(255,255,255,.06)';
+        h.style.backdropFilter = 'blur(14px)';
+        h.style.webkitBackdropFilter = 'blur(14px)';
+      } else {
+        h.style.background = 'transparent';
+        h.style.borderBottomColor = 'transparent';
+        h.style.backdropFilter = 'none';
+        h.style.webkitBackdropFilter = 'none';
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    // scroll reveal
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const hasGsap = !!window.gsap;
+    const hasST = hasGsap && !!window.ScrollTrigger;
+
+    if (hasGsap) {
+      gsap.registerPlugin(
+        window.ScrollTrigger, window.SplitText, window.ScrollSmoother
+      );
+    }
+
+    // scroll fluide en inertie — doit être créé avant les ScrollTrigger
+    if (hasGsap && window.ScrollSmoother && !reduce && document.getElementById('smooth-wrapper')) {
+      this._smoother = ScrollSmoother.create({ smooth: 1.1, effects: true, normalizeScroll: true });
+
+      // ScrollSmoother n'intercepte pas les clics sur les ancres par défaut :
+      // il faut lui demander explicitement de scroller en douceur vers la cible.
+      Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]')).forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const hash = a.getAttribute('href');
+          if (!hash || hash.length < 2) return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          this._smoother.scrollTo(target, true, 'top top-=90');
+        });
+      });
+    }
+
+    if (!hasST) {
+      // repli sans GSAP : ancien comportement (IntersectionObserver)
+      if (!reduce) {
+        const els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+        els.forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(26px)';
+          el.style.transition = 'opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)';
+        });
+        this._io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = '1';
+              e.target.style.transform = 'none';
+              this._io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach((el) => this._io.observe(el));
+      }
+    } else if (!reduce) {
+      // reveals en cascade
+      gsap.set('[data-reveal]', { opacity: 0, y: 26 });
+      ScrollTrigger.batch('[data-reveal]', {
+        start: 'top 90%',
+        once: true,
+        onEnter: (batch) => gsap.to(batch, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12, overwrite: true,
+        }),
+      });
+
+      // reveal du titre hero
+      // "create" (texte en dégradé via background-clip:text) est exclu du split :
+      // découpé en caractères, chaque lettre devient sa propre boîte et le
+      // background-clip:text perd son ancrage -> le mot devient invisible.
+      const line1 = document.getElementById('mdsLine1');
+      const wordTo = document.getElementById('mdsWordTo');
+      const createWord = document.getElementById('mdsCreateWord');
+      if (line1 && wordTo && createWord && window.SplitText) {
+        const split1 = new SplitText(line1, { type: 'chars' });
+        const split2 = new SplitText(wordTo, { type: 'chars' });
+        const chars = split1.chars.concat(split2.chars);
+        gsap.set(chars, { yPercent: 120, opacity: 0 });
+        gsap.set(createWord, { yPercent: 120, opacity: 0 });
+        const tl = gsap.timeline({ delay: 0.15 });
+        tl.to(chars, { yPercent: 0, opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.018 })
+          .to(createWord, { yPercent: 0, opacity: 1, duration: 0.9, ease: 'power4.out' }, '<0.1');
+      }
+
+      // ligne du process qui se dessine au scroll
+      const track = document.getElementById('mdsProcessTrack');
+      const line = document.getElementById('mdsProcessLine');
+      if (track && line) {
+        gsap.fromTo(line, { height: '0%' }, {
+          height: '100%', ease: 'none',
+          scrollTrigger: { trigger: track, start: 'top 75%', end: 'bottom 70%', scrub: 0.6 },
+        });
+      }
+
+      // carte "estimation live" de la section devis : les lignes se cochent
+      // une à une et le total se calcule sous les yeux du visiteur.
+      const devisMock = document.getElementById('mdsDevisMock');
+      if (devisMock) {
+        const rows = Array.prototype.slice.call(devisMock.querySelectorAll('.mds-devis-row'));
+        const checks = Array.prototype.slice.call(devisMock.querySelectorAll('.mds-devis-check'));
+        const ticks = checks.map((c) => c.querySelector('svg'));
+        const totalEl = document.getElementById('mdsDevisTotal');
+        const sums = [[550, 900], [250, 500], [950, 1890], [120, 300]];
+        const counter = { mn: 0, mx: 0 };
+        const fmtEur = (n) => Math.round(n).toLocaleString('fr-FR');
+
+        gsap.set(rows, { opacity: 0, x: 22 });
+        gsap.set(ticks, { opacity: 0, scale: 0.4 });
+        if (totalEl) totalEl.textContent = '0 €';
+
+        const devisTl = gsap.timeline({
+          scrollTrigger: { trigger: devisMock, start: 'top 78%', once: true },
+        });
+        let accMn = 0, accMx = 0;
+        rows.forEach((row, i) => {
+          accMn += sums[i][0]; accMx += sums[i][1];
+          const mn = accMn, mx = accMx;
+          devisTl.to(row, { opacity: 1, x: 0, duration: 0.45, ease: 'power3.out' }, i * 0.4)
+            .to(checks[i], { backgroundColor: 'rgba(232,0,90,.9)', borderColor: '#E8005A', duration: 0.25 }, '<0.12')
+            .to(ticks[i], { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(2.5)' }, '<')
+            .to(counter, {
+              mn, mx, duration: 0.55, ease: 'power1.out',
+              onUpdate: () => { if (totalEl) totalEl.textContent = fmtEur(counter.mn) + ' – ' + fmtEur(counter.mx) + ' €'; },
+            }, '<');
+        });
+        devisTl.fromTo('#mdsDevisCta', { scale: 1 }, { scale: 1.05, duration: 0.32, yoyo: true, repeat: 1, ease: 'power2.inOut' }, '+=0.25');
+      }
+
+      // hover portfolio plus fluide (délégué : les cartes sont regénérées au filtrage)
+      // hover portfolio : Tilt 3D + Animation d'images GSAP
+      const portGrid = document.getElementById('mdsPortGrid');
+      if (portGrid) {
+        const tilts = new WeakMap();
+        
+        const getCardAnim = (card) => {
+          let t = tilts.get(card);
+          if (!t) {
+            const hoverImg = card.querySelector('.mds-pcard-hover');
+            const baseImg = card.querySelector('.mds-pcard-base');
+            const content = card.querySelector('.mds-pcard-content');
+            const tag = card.querySelector('.mds-pcard-tag');
+
+            // Création de la timeline GSAP dédiée à cette carte
+            const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out', duration: 0.6 } });
+            
+            if (hoverImg && baseImg && content) {
+              // État initial de l'image de survol (légèrement zoomée)
+              gsap.set(hoverImg, { opacity: 0, scale: 1.15 });
+              gsap.set(baseImg, { scale: 1 });
+              
+              tl.to(hoverImg, { opacity: 1, scale: 1 }, 0)
+                .to(baseImg, { opacity: 0, scale: 0.9 }, 0)
+                .to(content, { y: -8 }, 0);
+                
+              if(tag) {
+                 tl.to(tag, { backgroundColor: 'rgba(232,0,90,.85)', borderColor: 'rgba(232,0,90,1)' }, 0);
+              }
+            }
+
+            t = {
+              rx: gsap.quickTo(card, 'rotateY', { duration: 0.5, ease: 'power3' }),
+              ry: gsap.quickTo(card, 'rotateX', { duration: 0.5, ease: 'power3' }),
+              sc: gsap.quickTo(card, 'scale', { duration: 0.5, ease: 'power3' }),
+              ty: gsap.quickTo(card, 'y', { duration: 0.5, ease: 'power3' }),
+              tl: tl // On stocke la timeline pour la jouer/inverser
+            };
+            tilts.set(card, t);
+          }
+          return t;
+        };
+
+        // Lancement de l'animation GSAP (Crossfade)
+        this._onPortOver = (e) => {
+          const card = e.target.closest('.mds-pcard');
+          if (!card || (e.relatedTarget && card.contains(e.relatedTarget))) return;
+          const anim = getCardAnim(card);
+          anim.tl.play();
+        };
+
+        // Inclinaison 3D au mouvement
+        this._onPortMove = (e) => {
+          const card = e.target.closest('.mds-pcard');
+          if (!card) return;
+          const t = getCardAnim(card);
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          t.rx(px * 10); t.ry(py * -10); t.sc(1.03); t.ty(-4);
+        };
+
+        // Réinitialisation de l'inclinaison ET inversion de l'animation
+        this._onPortOut = (e) => {
+          const card = e.target.closest('.mds-pcard');
+          if (!card || (e.relatedTarget && card.contains(e.relatedTarget))) return;
+          const t = getCardAnim(card);
+          t.rx(0); t.ry(0); t.sc(1); t.ty(0);
+          t.tl.reverse();
+        };
+
+        portGrid.addEventListener('mouseover', this._onPortOver);
+        portGrid.addEventListener('mousemove', this._onPortMove);
+        portGrid.addEventListener('mouseout', this._onPortOut);
+      }
+
+      // boutons CTA magnétiques
+      Array.prototype.slice.call(document.querySelectorAll('.mds-magnetic')).forEach((btn) => {
+        const qx = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' });
+        const qy = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' });
+        const onMove = (e) => {
+          const r = btn.getBoundingClientRect();
+          const relX = e.clientX - (r.left + r.width / 2);
+          const relY = e.clientY - (r.top + r.height / 2);
+          qx(gsap.utils.clamp(-14, 14, relX * 0.3));
+          qy(gsap.utils.clamp(-14, 14, relY * 0.3));
+        };
+        const onLeave = () => { qx(0); qy(0); };
+        btn.addEventListener('mousemove', onMove);
+        btn.addEventListener('mouseleave', onLeave);
+      });
+
+      // micro-animation des liens de menu au survol (lift + petit rebond)
+      Array.prototype.slice.call(document.querySelectorAll('.mds-navlink')).forEach((link) => {
+        const label = link.querySelector('span');
+        if (!label) return;
+        link.addEventListener('mouseenter', () => {
+          gsap.fromTo(label, { y: 0 }, { y: -3, duration: 0.28, ease: 'back.out(3)' });
+        });
+        link.addEventListener('mouseleave', () => {
+          gsap.to(label, { y: 0, duration: 0.32, ease: 'power2.out' });
+        });
+      });
+
+      // scrollspy : le lien de la section visible passe en état actif
+      const navLinks = Array.prototype.slice.call(document.querySelectorAll('.mds-navlink'));
+      const linkFor = {};
+      navLinks.forEach((l) => {
+        const id = (l.getAttribute('href') || '').replace('#', '');
+        if (id) linkFor[id] = l;
+      });
+      const setActive = (id) => {
+        navLinks.forEach((l) => l.classList.remove('is-active'));
+        if (id && linkFor[id]) linkFor[id].classList.add('is-active');
+      };
+      ['services', 'portfolio', 'about', 'process', 'devis', 'contact'].forEach((id) => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        ScrollTrigger.create({
+          trigger: sec,
+          start: 'top center',
+          end: 'bottom center',
+          onToggle: (self) => { if (self.isActive) setActive(id); },
+        });
+      });
+      // en tout début de page (hero, avant la 1re section), aucun lien actif
+      ScrollTrigger.create({
+        trigger: document.body,
+        start: 'top top',
+        end: () => '+=' + (document.getElementById('services') ? document.getElementById('services').offsetTop - 200 : 400),
+        onToggle: (self) => { if (self.isActive) setActive(null); },
+      });
+
+      // les images du hero/portfolio changent la hauteur du document après coup :
+      // on recalcule les positions de déclenchement une fois tout chargé.
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
+      }
+    }
+
+    // clic sur une carte portfolio -> ouverture du portail immersif correspondant
+    // (délégué : les cartes sont régénérées au filtrage)
+    const portGridClick = document.getElementById('mdsPortGrid');
+    if (portGridClick) {
+      this._onPortNav = (e) => {
+        const card = e.target.closest('.mds-pcard');
+        if (!card) return;
+        const portal = card.getAttribute('data-portal');
+        if (portal) window.location.href = 'portfolio.html?portal=' + portal;
+      };
+      portGridClick.addEventListener('click', this._onPortNav);
+    }
+
+    // ---- vidéo hero : lecture immédiate au chargement + relance au refresh ----
+    const heroVideo = document.getElementById('mdsHeroVideo');
+    const fireflyBox = document.getElementById('mdsFireflies');
+
+    const spawnHeroFireflies = () => {
+      if (!fireflyBox || fireflyBox.childElementCount) return;
+      const n = 16;
+      for (let i = 0; i < n; i++) {
+        const s = document.createElement('span');
+        const size = 2 + Math.random() * 2.5;
+        const dur = 9 + Math.random() * 7;
+        const delay = Math.random() * 6;
+        s.style.cssText = 'position:absolute;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) +
+          '%;width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:#fff;' +
+          'box-shadow:0 0 10px 2px rgba(232,0,90,.9),0 0 22px 6px rgba(192,0,60,.5);' +
+          'animation:mdsFirefly ' + dur + 's ease-in-out ' + delay + 's infinite';
+        fireflyBox.appendChild(s);
+      }
+      fireflyBox.style.opacity = '1';
+    };
+
+    if (heroVideo) {
+      // si la vidéo est introuvable / illisible, on montre l'image de repli
+      const heroFallback = document.getElementById('mdsHeroFallback');
+      heroVideo.addEventListener('error', () => {
+        if (heroFallback) { heroVideo.style.display = 'none'; heroFallback.style.display = 'block'; }
+      });
+      const srcEl = heroVideo.querySelector('source');
+      if (srcEl) srcEl.addEventListener('error', () => {
+        if (heroFallback) { heroVideo.style.display = 'none'; heroFallback.style.display = 'block'; }
+      });
+
+      // Arrive-t-on depuis l'intro via le bouton "Entrer" ? (clic = interaction)
+      // Si oui, on tente le son une seule fois ; sinon lecture muette normale.
+      let wantSound = false;
+      try { wantSound = new URLSearchParams(window.location.search).get('sound') === '1'; } catch (e) {}
+      if (wantSound && window.history && history.replaceState) {
+        try { history.replaceState(null, '', window.location.pathname); } catch (e) {}
+      }
+
+      // IMPORTANT : ne jamais toucher currentTime ici. Le remettre à 0 à chaque
+      // tentative de lecture rembobine la vidéo en boucle -> elle paraît figée.
+      // La vidéo démarre naturellement au début (élément neuf au chargement).
+      let heroStarted = false;
+      const tryPlay = (unmuted) => {
+        if (heroStarted) return;
+        heroVideo.playsInline = true;
+        if (unmuted) {
+          heroVideo.muted = false;
+        } else {
+          heroVideo.muted = true;
+          heroVideo.defaultMuted = true;
+        }
+        const p = heroVideo.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => { heroStarted = true; }).catch(() => {
+            // si la lecture avec son est refusée, on repasse en muet
+            if (unmuted) { heroStarted = false; tryPlay(false); }
+          });
+        } else {
+          heroStarted = true;
+        }
+      };
+
+      // 1re tentative (avec son si on vient de l'intro), puis relances muettes
+      tryPlay(wantSound);
+      ['loadeddata', 'canplay'].forEach((ev) => {
+        heroVideo.addEventListener(ev, () => { if (!heroStarted) tryPlay(false); });
+      });
+      window.addEventListener('pageshow', () => { if (!heroStarted) tryPlay(false); });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && heroVideo.paused && !heroStarted) tryPlay(false);
+      });
+
+      // ---- gestion du son ----
+      const soundBtn = document.getElementById('mdsHeroSound');
+      const soundIcon = document.getElementById('mdsHeroSoundIcon');
+      const ICON_ON = '<path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M16 9.5a4 4 0 010 5"/><path d="M19 7a8 8 0 010 10"/>';
+      const ICON_OFF = '<path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/>';
+      const reflectSound = () => {
+        const on = !heroVideo.muted;
+        if (soundIcon) soundIcon.innerHTML = on ? ICON_ON : ICON_OFF;
+        if (soundBtn) {
+          soundBtn.setAttribute('aria-pressed', String(on));
+          soundBtn.setAttribute('aria-label', on ? 'Couper le son' : 'Activer le son');
+        }
+      };
+      // bouton son manuel
+      if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          heroVideo.muted = !heroVideo.muted;
+          if (!heroVideo.muted) {
+            const pp = heroVideo.play(); if (pp && pp.catch) pp.catch(() => {});
+          }
+          reflectSound();
+        });
+      }
+      // Le navigateur ne transmet pas l'autorisation "son" d'une page à l'autre :
+      // si on vient de l'intro (?sound=1), on active le son au TOUT PREMIER geste
+      // de l'utilisateur sur la page (clic / touche / scroll) — une vraie interaction
+      // qui, elle, débloque le son côté navigateur.
+      if (wantSound) {
+        const enableSoundOnce = () => {
+          heroVideo.muted = false;
+          const pp = heroVideo.play(); if (pp && pp.catch) pp.catch(() => {});
+          reflectSound();
+          window.removeEventListener('pointerdown', enableSoundOnce);
+          window.removeEventListener('keydown', enableSoundOnce);
+          window.removeEventListener('wheel', enableSoundOnce);
+          window.removeEventListener('touchstart', enableSoundOnce);
+        };
+        window.addEventListener('pointerdown', enableSoundOnce, { once: true, passive: true });
+        window.addEventListener('keydown', enableSoundOnce, { once: true });
+        window.addEventListener('wheel', enableSoundOnce, { once: true, passive: true });
+        window.addEventListener('touchstart', enableSoundOnce, { once: true, passive: true });
+      }
+
+      // particules à la fin de la vidéo (désactivé si reduced-motion)
+      if (!reduce) {
+        this._onHeroEnded = spawnHeroFireflies;
+        heroVideo.addEventListener('ended', this._onHeroEnded);
+        // filet de sécurité : si 'ended' ne se déclenche pas (cache, codec), on
+        // programme l'apparition d'après la durée réelle une fois connue.
+        const armSafety = () => {
+          const d = heroVideo.duration;
+          if (isFinite(d) && d > 0) {
+            clearTimeout(this._heroSafety);
+            this._heroSafety = setTimeout(spawnHeroFireflies, (d + 0.4) * 1000);
+          }
+        };
+        if (isFinite(heroVideo.duration) && heroVideo.duration > 0) armSafety();
+        heroVideo.addEventListener('loadedmetadata', armSafety);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onHeroEnded) {
+      const v = document.getElementById('mdsHeroVideo');
+      if (v) v.removeEventListener('ended', this._onHeroEnded);
+    }
+    if (this._heroSafety) clearTimeout(this._heroSafety);
+    if (this._io) this._io.disconnect();
+    if (window.ScrollTrigger) ScrollTrigger.getAll().forEach((t) => t.kill());
+    if (this._smoother) this._smoother.kill();
+  }
+
+  renderVals() {
+   const all = [
+      { cat: 'ia', tag: 'Images IA', title: 'Campagne visuelle pour une marque premium', img: 'assets/portfolio-01.webp', hoverImg: 'assets/portfolio-hover-01.webp', portal: 'ia' },
+      { cat: 'web', tag: 'Web', title: 'Landing page immersive pour un service digital', img: 'assets/portfolio-02.webp', hoverImg: 'assets/portfolio-hover-02.webp', portal: 'web' },
+      { cat: 'video', tag: 'Vidéo', title: 'Storyboard animé pour un lancement de marque', img: 'assets/portfolio-03.webp', hoverImg: 'assets/portfolio-hover-03.webp', portal: 'storyboard' },
+      { cat: 'ia', tag: 'Retouche', title: 'Retouche produit haut de gamme', img: 'assets/portfolio-04.webp', hoverImg: 'assets/portfolio-hover-04.webp', portal: 'retouche' },
+      { cat: 'branding', tag: 'Branding', title: 'Univers visuel pour les réseaux sociaux', img: 'assets/portfolio-05.webp', hoverImg: 'assets/portfolio-hover-05.webp', portal: 'branding' },
+      { cat: 'video', tag: 'Vidéo', title: 'Vidéo courte cinématique pour une promotion', img: 'assets/portfolio-06.webp', hoverImg: 'assets/portfolio-hover-06.webp', portal: 'cinema' },
+    ];
+    const filter = this.state.filter;
+    const projects = filter === 'all' ? all : all.filter((p) => p.cat === filter);
+
+    const defs = [
+      { f: 'all', label: 'Tout' }, { f: 'ia', label: 'Images IA' },
+      { f: 'video', label: 'Vidéo' }, { f: 'web', label: 'Web' }, { f: 'branding', label: 'Branding' },
+    ];
+    const baseStyle = 'padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#A7A7A7;font-family:Space Grotesk,sans-serif;font-size:13.5px;cursor:pointer;transition:color .2s,border-color .2s';
+    const activeStyle = 'padding:9px 18px;border-radius:999px;border:1px solid transparent;background:linear-gradient(135deg,#C0003C,#E8005A);color:#fff;font-family:Space Grotesk,sans-serif;font-size:13.5px;cursor:pointer;transition:color .2s,border-color .2s';
+    const filterItems = defs.map((d) => ({
+      label: d.label,
+      style: d.f === filter ? activeStyle : baseStyle,
+      onClick: () => this.setState({ filter: d.f }),
+    }));
+
+    return {
+      grainOn: this.props.grainOn != null ? this.props.grainOn : true,
+      projects,
+      filterItems,
+      menuClass: this.state.menuOpen ? 'open' : '',
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      year: new Date().getFullYear(),
+      onSubmit: async (e) => {
+        e.preventDefault();
+        const v = (id) => { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; };
+        const status = document.getElementById('mds-form-status');
+        const btn = document.getElementById('mds-submit-btn');
+        const label = document.getElementById('mds-submit-label');
+        const setStatus = (msg, color) => { if (status) { status.textContent = msg; status.style.color = color; } };
+
+        const nom = v('mds-name'), email = v('mds-email');
+        if (v('mds-website')) return; // honeypot rempli : bot, on ignore silencieusement
+        if (!nom) { setStatus('Merci d’indiquer votre nom.', '#E8005A'); return; }
+        if (!isValidEmailContact(email)) { setStatus('Merci d’indiquer un email valide.', '#E8005A'); return; }
+        if (!v('mds-msg')) { setStatus('Merci de décrire votre projet.', '#E8005A'); return; }
+
+        const payload = {
+          formType: 'contact', website: v('mds-website'),
+          nom, email, type: v('mds-type'), budget: v('mds-budget'), message: v('mds-msg'),
+        };
+
+        btn.disabled = true;
+        const oldLabel = label.textContent;
+        label.textContent = 'Envoi en cours…';
+        setStatus('', '');
+
+        try {
+          await fetch(WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Apps Script ne renvoie pas d'en-têtes CORS : réponse opaque, on suppose le succès
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload),
+          });
+          setStatus('Message envoyé ✨ Vous recevrez un accusé de réception par email.', '#4ade80');
+          e.target.reset();
+        } catch (err) {
+          console.error(err);
+          setStatus('Erreur lors de l’envoi — réessayez ou écrivez à contact@mediadezignstudio.ai.', '#E8005A');
+        }
+        btn.disabled = false;
+        label.textContent = oldLabel;
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

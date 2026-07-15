@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio immersif — Media Dezign Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============ RGPD — Gestion des cookies (tarteaucitron.js) ============ -->
+<script src="js/tarteaucitron/tarteaucitron.js"></script>
+<script>
+tarteaucitron.init({
+    "privacyUrl": "politique-confidentialite.html",
+    "hashtag": "#cookies",
+    "cookieName": "mds_cookies",
+    "orientation": "bottom",
+    "showAlertSmall": false,
+    "cookieslist": true,
+    "showIcon": true,
+    "iconPosition": "BottomLeft",
+    "DenyAllCta": true,
+    "AcceptAllCta": true,
+    "highPrivacy": true,
+    "handleBrowserDNTRequest": false,
+    "removeCredit": true,
+    "useExternalCss": false,
+    "readmoreLink": "politique-confidentialite.html",
+    "mandatory": true,
+    "iconSrc": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='8.5'/><circle cx='9' cy='9' r='1' fill='%23ffffff' stroke='none'/><circle cx='15' cy='10.5' r='1' fill='%23ffffff' stroke='none'/><circle cx='10' cy='15' r='1' fill='%23ffffff' stroke='none'/><circle cx='15.5' cy='15' r='1' fill='%23ffffff' stroke='none'/></svg>"
+});
+/* Aucun service tiers actif pour le moment (aucun traceur détecté sur le site).
+   Pour activer Google Analytics 4 plus tard, décommenter et renseigner l'ID :
+   tarteaucitron.user.gtagUa = 'G-XXXXXXXXXX';
+   (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+*/
+</script>
+<link rel="stylesheet" href="css/tarteaucitron-override.css">
+<!-- ============ /RGPD ============ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#000}
+body{background:#000;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:'Space Grotesk',sans-serif}
+::selection{background:rgba(232,0,90,.35)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070707}
+::-webkit-scrollbar-thumb{background:#1c1c1f;border-radius:6px}
+
+@keyframes mdsFirefly{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}25%{transform:translate(14px,-20px)}50%{transform:translate(-10px,-34px);opacity:.55}75%{transform:translate(-20px,-10px);opacity:.9}100%{transform:translate(0,0);opacity:0}}
+#fireflies span{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(232,0,90,.6),0 0 16px 4px rgba(192,0,60,.3);animation-name:mdsFirefly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
+.grad-txt{background:linear-gradient(135deg,#C0003C,#E8005A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.label-kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#A7A7A7;font-weight:500}
+.label-kicker::before{content:"";width:26px;height:1px;background:linear-gradient(135deg,#C0003C,#E8005A);display:inline-block}
+
+/* header */
+header.site{position:fixed;top:0;left:0;right:0;z-index:50;height:74px;background:rgba(7,7,8,.72);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:opacity .4s,visibility .4s}
+header.site.hidden-by-portal{opacity:0;visibility:hidden}
+.hdr-inner{max-width:1200px;margin:0 auto;padding:0 28px;height:74px;display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{display:flex;align-items:center;gap:11px}
+.hdr-logo img{height:30px;width:auto;filter:drop-shadow(0 0 10px rgba(232,0,90,.35))}
+.hdr-logo span{font-family:'Anton',sans-serif;font-size:21px;letter-spacing:.06em;text-transform:uppercase}
+.hdr-back{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;color:#A7A7A7;padding:10px 18px;border:1px solid rgba(255,255,255,.14);border-radius:999px;transition:color .2s,border-color .2s,background .3s}
+.hdr-back:hover{color:#fff;border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)}
+
+/* hero */
+.hero{padding:150px 0 30px;position:relative;overflow:hidden}
+.hero .grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:62px 62px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 72%)}
+h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(42px,7vw,88px);line-height:1.05;margin-top:14px}
+.hero p.sub{color:#A7A7A7;max-width:64ch;font-size:clamp(15px,1.6vw,17.5px);margin-top:18px}
+
+/* hub grid */
+.hub{padding:40px 0 110px}
+.hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.portal-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);cursor:pointer;background:#0A0A0A;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s,border-color .45s;will-change:transform}
+.portal-card:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(192,0,60,.3);border-color:rgba(232,0,90,.5)}
+.portal-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.portal-card img.alt{opacity:0}
+.portal-card:hover img.base{transform:scale(1.07)}
+.portal-card:hover img.alt{opacity:1;transform:scale(1.07)}
+.portal-card .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9),transparent 55%);pointer-events:none}
+.portal-card .pc-num{position:absolute;top:14px;right:16px;font-family:'Anton',sans-serif;font-size:30px;color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.35);transition:-webkit-text-stroke .4s}
+.portal-card:hover .pc-num{-webkit-text-stroke:1.2px rgba(232,0,90,.9)}
+.portal-card .pc-info{position:absolute;left:18px;right:18px;bottom:16px}
+.portal-card .pc-tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(232,0,90,.18);border:1px solid rgba(232,0,90,.4);margin-bottom:9px}
+.portal-card h3{font-size:17px;font-weight:600}
+.portal-card .pc-enter{display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-size:12.5px;color:#E8005A;font-weight:600;letter-spacing:.05em;text-transform:uppercase;opacity:.75;transition:opacity .3s,gap .3s}
+.portal-card:hover .pc-enter{opacity:1;gap:11px}
+.portal-card .pc-enter svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.4;fill:none}
+
+/* ============ PORTAL OVERLAY ============ */
+#portalWrap{position:fixed;inset:0;z-index:100;display:none}
+#portalWrap.open{display:block}
+#flipCover{position:fixed;z-index:104;overflow:hidden;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.7);will-change:transform}
+#flipCover img{width:100%;height:100%;object-fit:cover}
+#glCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:101;opacity:0}
+.portal-veil{position:fixed;inset:0;z-index:102;pointer-events:none;background-image:radial-gradient(120% 90% at 50% 110%,rgba(0,0,0,.6),transparent 55%),linear-gradient(to bottom,rgba(0,0,0,.42),transparent 22%);background-color:rgba(6,6,8,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);transition:backdrop-filter .5s cubic-bezier(.4,0,.2,1),-webkit-backdrop-filter .5s cubic-bezier(.4,0,.2,1),background-color .5s ease}
+.portal-head{position:fixed;top:0;left:0;right:0;z-index:106;height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;opacity:0}
+.portal-head .ph-left{display:flex;align-items:center;gap:14px}
+.portal-head .ph-num{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:.1em;color:#E8005A}
+.portal-head .ph-title{font-family:'Anton',sans-serif;font-size:17px;letter-spacing:.09em;text-transform:uppercase}
+.portal-head .ph-room{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#A7A7A7}
+#portalClose{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(10,10,10,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;display:grid;place-items:center;transition:border-color .25s,transform .25s,background .3s}
+#portalClose:hover{border-color:#E8005A;transform:rotate(90deg);background:rgba(232,0,90,.15)}
+#portalClose svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none}
+
+.portal-scroll{position:fixed;inset:0;z-index:105;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;opacity:0}
+.portal-scroll::-webkit-scrollbar{width:8px}
+.portal-scroll::-webkit-scrollbar-thumb{background:rgba(232,0,90,.4);border-radius:6px}
+
+.p-intro{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:90px 28px 60px;position:relative}
+.p-intro .pi-kicker{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#A7A7A7}
+.p-intro h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(52px,10vw,130px);line-height:1;margin-top:18px}
+.p-intro .pi-desc{color:#cfcfcf;max-width:60ch;margin-top:22px;font-size:clamp(15px,1.6vw,17.5px);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.p-intro .pi-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#A7A7A7;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+.p-intro .pi-cue i{display:block;width:1px;height:44px;background:linear-gradient(to bottom,#E8005A,transparent);animation:cueDrop 1.8s ease-in-out infinite}
+@keyframes cueDrop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.p-project{min-height:100vh;display:flex;align-items:center;padding:80px 28px}
+.p-project .pp-in{width:100%;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.p-project.alt .pp-in{grid-template-columns:.9fr 1.1fr}
+.p-project.alt .pp-media{order:2}
+.pp-media{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.65);aspect-ratio:4/3;background:#0A0A0A}
+.pp-media img,.pp-media video{width:100%;height:100%;object-fit:cover}
+.pp-media .pp-glow{position:absolute;inset:-1px;border-radius:18px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(232,0,90,.25),0 0 60px rgba(232,0,90,.12)}
+.pp-txt .pp-idx{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:.14em;color:#E8005A}
+.pp-txt h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin-top:10px}
+.pp-txt .pp-cat{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#A7A7A7;margin-top:8px}
+.pp-txt p{color:#cfcfcf;margin-top:16px;font-size:15.5px;max-width:52ch;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.pp-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pp-meta span{font-size:12px;color:#cfcfcf;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(5,5,5,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+.p-outro{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 120px}
+.p-outro h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,5vw,58px);line-height:1.15}
+.p-outro p{color:#A7A7A7;max-width:54ch;margin-top:16px}
+.p-outro .po-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;color:#fff;cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .3s,border-color .2s,background .3s}
+.btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.3;fill:none}
+.btn-primary{background:linear-gradient(135deg,#C0003C,#E8005A);box-shadow:0 8px 28px rgba(192,0,60,.32)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,0,90,.5)}
+.btn-ghost{background:rgba(5,5,5,.4);border-color:rgba(255,255,255,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:rgba(232,0,90,.6);background:rgba(232,0,90,.08)}
+
+/* reveals internes au portail */
+.rv{opacity:0;transform:translateY(44px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.vis{opacity:1;transform:none}
+
+footer{border-top:1px solid #1A1A1A;padding:34px 0}
+footer .f-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;color:#6E6E72;font-size:13px}
+
+@media(max-width:980px){.hub-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){
+  .hub-grid{grid-template-columns:1fr}
+  .p-project .pp-in,.p-project.alt .pp-in{grid-template-columns:1fr}
+  .p-project.alt .pp-media{order:0}
+  .portal-head .ph-room{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  #fireflies{display:none}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.04;mix-blend-mode:screen;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+<div id="fireflies" aria-hidden="true" style="position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden"></div>
+
+<header class="site" id="siteHeader">
+  <div class="hdr-inner">
+    <a href="index.html" class="hdr-logo" aria-label="Media Dezign Studio — accueil">
+      <img src="assets/logo-md-white.webp" alt="Media Dezign Studio">
+      <span>Studio<span style="color:#E8005A">.AI</span></span>
+    </a>
+    <a href="index.html" class="hdr-back">
+      <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;stroke-width:2.3;fill:none"><path d="M17 7L7 17M15 17H7V9"/></svg>
+      Retour au site
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO / HUB ============ -->
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="label-kicker">Portfolio immersif</span>
+    <h1 id="hubTitle">Six <span class="grad-txt">portails.</span></h1>
+    <p class="sub">Chaque domaine du studio est une dimension à part entière. Cliquez sur un portail : la carte s'ouvre en plein écran et vous plonge dans une salle 3D interactive où vivent les projets.</p>
+  </div>
+</section>
+
+<main class="hub">
+  <div class="wrap">
+    <div class="hub-grid" id="hubGrid"></div>
+    <p style="margin-top:20px;color:#6E6E72;font-size:13px">Astuce : dans chaque dimension, bougez la souris pour interagir avec l'environnement, puis scrollez pour découvrir les projets.</p>
+  </div>
+</main>
+
+<!-- ============ OVERLAY PORTAIL ============ -->
+<div id="portalWrap" aria-hidden="true">
+  <canvas id="glCanvas"></canvas>
+  <div class="portal-veil" id="portalVeil" aria-hidden="true"></div>
+  <div class="portal-scroll" id="portalScroll"></div>
+  <div class="portal-head" id="portalHead">
+    <div class="ph-left">
+      <span class="ph-num" id="phNum">01 / 06</span>
+      <span class="ph-title" id="phTitle"></span>
+      <span class="ph-room" id="phRoom"></span>
+    </div>
+    <button id="portalClose" aria-label="Retour au hub">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="flipCover"><img alt=""></div>
+</div>
+
+<footer>
+  <div class="wrap f-in">
+    <span>© <span id="year"></span> Media Dezign Studio — mediadezignstudio.ai</span>
+    <span style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+      <a href="devis.html" style="color:#A7A7A7">Devis personnalisé</a>
+      <a href="politique-confidentialite.html" style="color:#A7A7A7">Confidentialité</a>
+      <a href="#cookies" style="color:#A7A7A7">Gestion des cookies</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   PORTFOLIO IMMERSIF — Le Hub & Les 6 Portails
+   GSAP (transition FLIP manuelle) + Three.js (salles WebGL)
+   ========================================================= */
+
+const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const IS_MOBILE = window.matchMedia && window.matchMedia('(max-width:760px)').matches;
+
+/* ---------- données des 6 portails ---------- */
+const PORTALS = [
+  {
+    key: 'ia', num: '01', tag: 'Images IA', title: 'Images IA', room: 'La Nébuleuse',
+    cover: 'assets/portfolio-01.webp', alt: 'assets/portfolio-hover-01.webp',
+    introKicker: 'Dimension 01 — Images & IA',
+    introTitle: 'La <span class="grad-txt">Nébuleuse</span>',
+    introDesc: 'Une nuée de particules en suspension, matière première de tous les visuels. C\'est ici que naissent les images : chaque point de lumière est une idée qui attend sa direction artistique.',
+    projects: [
+      { img: 'assets/portfolio-01.webp', idx: 'Projet 01', title: 'Cyber-Renaissance', cat: 'Série éditoriale — Mode',
+        desc: 'Série éditoriale mêlant esthétique victorienne et cyberpunk. Direction artistique complète, casting virtuel, 24 visuels haute définition déclinés pour le print et les campagnes digitales.',
+        meta: ['Direction artistique', 'ComfyUI + Flux', 'Retouche premium', '24 visuels', '2026'] },
+      { img: 'assets/portfolio-hover-01.webp', idx: 'Projet 02', title: 'Neon Flora', cat: 'Packshots concept — Cosmétique',
+        desc: 'Concepts de packshots pour une gamme de cosmétiques bio-luminescents. Intégration du produit réel dans des décors IA végétaux irradiants, détourage millimétré et colorimétrie signature.',
+        meta: ['Packshot produit', 'Compositing', 'SDXL', 'Déclinaisons social', '2025'] },
+    ],
+  },
+  {
+    key: 'web', num: '02', tag: 'Web', title: 'Création Web', room: 'Le Prisme',
+    cover: 'assets/portfolio-02.webp', alt: 'assets/portfolio-hover-02.webp',
+    introKicker: 'Dimension 02 — Web & Digital',
+    introTitle: 'Le <span class="grad-txt">Prisme</span>',
+    introDesc: 'Un monde géométrique et mathématique : une grille infinie où flottent des prismes de verre qui réfractent la lumière. Chaque interface est une architecture — précise, vivante, habitée.',
+    projects: [
+      { img: 'assets/portfolio-02.webp', idx: 'Projet 01', title: 'Fintech Nova', cat: 'UX/UI — Application bancaire',
+        desc: 'Expérience utilisateur complète pour une application bancaire du futur : design system, parcours d\'onboarding gamifié, dashboards temps réel et micro-interactions au pixel près.',
+        meta: ['UX/UI Figma', 'Design system', 'Prototypage', 'Micro-interactions', '2026'] },
+      { img: 'assets/portfolio-hover-02.webp', idx: 'Projet 02', title: 'Galerie Olympe', cat: 'Site vitrine — WebGL',
+        desc: 'Site vitrine immersif pour une exposition d\'art virtuel : navigation 3D entre les œuvres, transitions GSAP liquides et scénographie lumineuse pilotée au scroll.',
+        meta: ['WebGL / Three.js', 'GSAP ScrollTrigger', 'Direction artistique', 'Intégration', '2025'] },
+    ],
+  },
+  {
+    key: 'storyboard', num: '03', tag: 'Vidéo', title: 'Storyboard', room: 'Le Blueprint',
+    cover: 'assets/portfolio-03.webp', alt: 'assets/portfolio-hover-03.webp',
+    introKicker: 'Dimension 03 — Vidéo & Storyboard',
+    introTitle: 'Le <span class="grad-txt">Blueprint</span>',
+    introDesc: 'La table à dessin technique du studio. Des lignes de construction se tracent dans le vide, cadre après cadre : avant l\'image en mouvement, il y a le plan — millimétré, intentionnel.',
+    projects: [
+      { img: 'assets/portfolio-03.webp', idx: 'Projet 01', title: 'Projet Apex', cat: 'Découpage technique — Automobile',
+        desc: 'Déconstruction plan par plan du film de lancement d\'une voiture de sport : 42 cases de storyboard, values de lumière, mouvements caméra annotés et animatique de validation.',
+        meta: ['Storyboard 42 plans', 'Animatique', 'Scripting', 'Prévisualisation IA', '2026'] },
+      { img: 'assets/portfolio-hover-03.webp', idx: 'Projet 02', title: 'L\'Odyssée', cat: 'Court-métrage — Science-fiction',
+        desc: 'Storyboard et animatique complets pour un court-métrage de science-fiction : recherche de cadrages, continuité visuelle sur 8 séquences et bande-son témoin pour le pitch producteurs.',
+        meta: ['Storyboard', 'Animatique sonore', '8 séquences', 'Pitch deck', '2025'] },
+    ],
+  },
+  {
+    key: 'retouche', num: '04', tag: 'Retouche', title: 'Retouche', room: 'Le Laboratoire',
+    cover: 'assets/portfolio-04.webp', alt: 'assets/portfolio-hover-04.webp',
+    introKicker: 'Dimension 04 — Retouche & Compositing',
+    introTitle: 'Le <span class="grad-txt">Laboratoire</span>',
+    introDesc: 'Un environnement chirurgical, sombre et contrasté. Un scanner de lumière balaie la matière et révèle les textures : ici, chaque pixel passe sur la table d\'opération.',
+    projects: [
+      { img: 'assets/portfolio-04.webp', idx: 'Projet 01', title: 'Chrono-Master', cat: 'Compositing extrême — Horlogerie',
+        desc: 'Intégration d\'une montre de luxe dans un environnement de glace pilée : shooting produit, sculpture lumière, fusion des matières et détourage au poil de pinceau près.',
+        meta: ['Compositing', 'Détourage expert', 'Matte painting', 'Print 300 dpi', '2026'] },
+      { img: 'assets/portfolio-hover-04.webp', idx: 'Projet 02', title: 'Liquid Gold', cat: 'Colorimétrie — Joaillerie',
+        desc: 'Nettoyage millimétré et colorimétrie signature sur une campagne joaillerie : peau, métal et pierre traités séparément pour un rendu éditorial haut de gamme.',
+        meta: ['Colorimétrie', 'Beauty retouch', 'Campagne 12 visuels', 'Direction print', '2025'] },
+    ],
+  },
+  {
+    key: 'branding', num: '05', tag: 'Branding', title: 'Branding', room: 'Le Musée',
+    cover: 'assets/portfolio-05.webp', alt: 'assets/portfolio-hover-05.webp',
+    introKicker: 'Dimension 05 — Branding & DA',
+    introTitle: 'Le <span class="grad-txt">Musée</span>',
+    introDesc: 'Un espace muséal minimaliste où flottent des monolithes noirs. Les projecteurs s\'allument un à un : une identité de marque se contemple comme une œuvre — et se construit comme une architecture.',
+    projects: [
+      { img: 'assets/portfolio-05.webp', idx: 'Projet 01', title: 'Vanguard', cat: 'Identité complète — Startup IA',
+        desc: 'Refonte complète de l\'identité visuelle d\'une startup IA : logo et déclinaisons, charte graphique, brandbook de 40 pages et système d\'icônes propriétaire.',
+        meta: ['Logo + déclinaisons', 'Brandbook 40 p.', 'Charte complète', 'Iconographie', '2026'] },
+      { img: 'assets/portfolio-hover-05.webp', idx: 'Projet 02', title: 'Lumina Paris', cat: 'Direction artistique — Haute couture',
+        desc: 'Direction artistique et templates réseaux sociaux pour une maison de haute couture : grille éditoriale, gamme chromatique nuit & or, et kit de 24 templates prêts à publier.',
+        meta: ['Direction artistique', 'Kit 24 templates', 'Grille éditoriale', 'Social branding', '2025'] },
+    ],
+  },
+  {
+    key: 'cinema', num: '06', tag: 'Vidéo cinématique', title: 'Cinématique', room: 'Le Warp',
+    cover: 'assets/portfolio-06.webp', alt: 'assets/portfolio-hover-06.webp',
+    introKicker: 'Dimension 06 — Vidéo cinématique',
+    introTitle: 'Le <span class="grad-txt">Warp</span>',
+    introDesc: 'Vitesse pure. Des traînées de lumière filent vers vous à la vitesse du montage. Scrollez : le temps ralentit, et les images prennent le relais du mouvement.',
+    projects: [
+      { video: 'assets/hero-video.mp4', img: 'assets/portfolio-06.webp', idx: 'Projet 01', title: 'Pulse', cat: 'Aftermovie — Festival électro',
+        desc: 'Montage dynamique et motion design pour un festival de musique électronique : 60 secondes calées à la frame, typographie cinétique et colorimétrie néon.',
+        meta: ['Montage rythmique', 'Motion design', 'Sound design', 'Déclinaisons 9:16', '2026'] },
+      { img: 'assets/portfolio-hover-06.webp', idx: 'Projet 02', title: 'Cosmic Drop', cat: 'Reel publicitaire — VFX',
+        desc: 'Reel publicitaire ultra-rythmé intégrant VFX, plans générés par IA et sound design percutant : 15 secondes pensées pour arrêter le scroll.',
+        meta: ['VFX & compositing', 'Plans IA (Kling)', 'Format vertical', 'Hook 3 secondes', '2025'] },
+    ],
+  },
+];
+
+const $ = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => Array.prototype.slice.call((c || document).querySelectorAll(s));
+
+/* état souris / scroll partagé avec les scènes 3D */
+const pointer = { x: 0, y: 0 };
+let portalScrollP = 0;
+window.addEventListener('pointermove', (e) => {
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -((e.clientY / window.innerHeight) * 2 - 1);
+}, { passive: true });
+
+/* =========================================================
+   LES 6 SCÈNES THREE.JS
+   Chaque builder reçoit {scene, camera} et retourne
+   { update(t, dt), dispose() } — chargées uniquement au clic.
+   ========================================================= */
+
+function glowTexture() {
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(0.35, 'rgba(255,255,255,.6)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, 64, 64);
+  const tex = new THREE.CanvasTexture(c);
+  return tex;
+}
+
+const SceneBuilders = {
+
+  /* --- 01 · La Nébuleuse : particules crimson + répulsion souris --- */
+  ia({ scene, camera }) {
+    camera.position.set(0, 0, 10);
+    const N = IS_MOBILE ? 1200 : 2600;
+    const pos = new Float32Array(N * 3);
+    const base = new Float32Array(N * 3);
+    const col = new Float32Array(N * 3);
+    const palette = [new THREE.Color(0xC0003C), new THREE.Color(0xE8005A), new THREE.Color(0xff5c93), new THREE.Color(0xffffff)];
+    for (let i = 0; i < N; i++) {
+      // amas ellipsoïdal type nébuleuse
+      const r = Math.pow(Math.random(), 0.5) * 9;
+      const th = Math.random() * Math.PI * 2;
+      const ph = Math.acos(2 * Math.random() - 1);
+      const x = r * Math.sin(ph) * Math.cos(th) * 1.5;
+      const y = r * Math.sin(ph) * Math.sin(th) * 0.75;
+      const z = r * Math.cos(ph) * 0.9 - 2;
+      base[i * 3] = pos[i * 3] = x;
+      base[i * 3 + 1] = pos[i * 3 + 1] = y;
+      base[i * 3 + 2] = pos[i * 3 + 2] = z;
+      const c = palette[Math.random() < 0.06 ? 3 : Math.floor(Math.random() * 3)];
+      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const mat = new THREE.PointsMaterial({
+      size: 0.14, map: glowTexture(), vertexColors: true, transparent: true, opacity: 0.9,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+    scene.fog = new THREE.FogExp2(0x000000, 0.028);
+
+    return {
+      update(t, dt) {
+        pts.rotation.y += dt * 0.03;
+        pts.rotation.z = Math.sin(t * 0.05) * 0.05;
+        // répulsion fluide autour du pointeur (projeté dans le plan z≈0)
+        const mx = pointer.x * 9, my = pointer.y * 5;
+        const arr = geo.attributes.position.array;
+        for (let i = 0; i < N; i++) {
+          const bx = base[i * 3], by = base[i * 3 + 1], bz = base[i * 3 + 2];
+          const wob = Math.sin(t * 0.6 + i * 0.37) * 0.12;
+          let dx = bx - mx, dy = by - my;
+          const d2 = dx * dx + dy * dy + 0.6;
+          const f = Math.min(2.2, 5 / d2);
+          arr[i * 3]     += (bx + dx / Math.sqrt(d2) * f - arr[i * 3]) * 0.06;
+          arr[i * 3 + 1] += (by + dy / Math.sqrt(d2) * f + wob - arr[i * 3 + 1]) * 0.06;
+          arr[i * 3 + 2] += (bz - arr[i * 3 + 2]) * 0.06;
+        }
+        geo.attributes.position.needsUpdate = true;
+        camera.position.x += (pointer.x * 1.4 - camera.position.x) * 0.04;
+        camera.position.y += (pointer.y * 0.9 - camera.position.y) * 0.04;
+        camera.lookAt(0, 0, -2);
+      },
+      dispose() { geo.dispose(); mat.map.dispose(); mat.dispose(); },
+    };
+  },
+
+  /* --- 02 · Le Prisme : grille infinie + prismes de verre --- */
+  web({ scene, camera }) {
+    camera.position.set(0, 1.2, 11);
+    scene.fog = new THREE.FogExp2(0x000000, 0.055);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const key = new THREE.PointLight(0xE8005A, 1.6, 40);
+    key.position.set(4, 6, 6);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffffff, 0.5);
+    fill.position.set(-6, 4, 8);
+    scene.add(fill);
+
+    const gridBottom = new THREE.GridHelper(90, 70, 0xE8005A, 0x1c1c22);
+    gridBottom.material.transparent = true; gridBottom.material.opacity = 0.4;
+    gridBottom.position.y = -3.2;
+    scene.add(gridBottom);
+    const gridTop = new THREE.GridHelper(90, 70, 0xE8005A, 0x141418);
+    gridTop.material.transparent = true; gridTop.material.opacity = 0.18;
+    gridTop.position.y = 7;
+    scene.add(gridTop);
+
+    const prisms = [];
+    const geos = [
+      new THREE.OctahedronGeometry(1.1),
+      new THREE.BoxGeometry(1.1, 1.9, 1.1),
+      new THREE.ConeGeometry(0.95, 2, 4),
+      new THREE.IcosahedronGeometry(1),
+    ];
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0x0d0d12, metalness: 0.35, roughness: 0.12,
+      transparent: true, opacity: 0.55, side: THREE.DoubleSide,
+    });
+    const edgeMat = new THREE.LineBasicMaterial({ color: 0xE8005A, transparent: true, opacity: 0.85 });
+    const nP = IS_MOBILE ? 6 : 10;
+    for (let i = 0; i < nP; i++) {
+      const g = geos[i % geos.length];
+      const mesh = new THREE.Mesh(g, glassMat);
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(g), edgeMat);
+      mesh.add(edges);
+      const a = (i / nP) * Math.PI * 2;
+      mesh.position.set(Math.cos(a) * (3.2 + Math.random() * 4.5), Math.random() * 4 - 1, -Math.random() * 16 + 2);
+      mesh.userData = { baseY: mesh.position.y, sp: 0.25 + Math.random() * 0.5, ph: Math.random() * Math.PI * 2 };
+      scene.add(mesh); prisms.push(mesh);
+    }
+
+    return {
+      update(t, dt) {
+        gridBottom.position.z = gridTop.position.z = (t * 1.6) % (90 / 70 * 2);
+        prisms.forEach((p) => {
+          p.rotation.x += dt * p.userData.sp * 0.5;
+          p.rotation.y += dt * p.userData.sp;
+          p.position.y = p.userData.baseY + Math.sin(t * p.userData.sp + p.userData.ph) * 0.5;
+        });
+        camera.position.x += (pointer.x * 2.2 - camera.position.x) * 0.04;
+        camera.position.y += (1.2 + pointer.y * 1.2 - camera.position.y) * 0.04;
+        camera.lookAt(0, 0.6, -4);
+      },
+      dispose() {
+        geos.forEach((g) => g.dispose()); glassMat.dispose(); edgeMat.dispose();
+        prisms.forEach((p) => p.children[0].geometry.dispose());
+      },
+    };
+  },
+
+  /* --- 03 · Le Blueprint : cadres 16:9 + lignes de construction qui se dessinent --- */
+  storyboard({ scene, camera }) {
+    camera.position.set(0, 0.4, 12);
+    scene.fog = new THREE.FogExp2(0x000000, 0.04);
+    const group = new THREE.Group();
+    scene.add(group);
+    const lineMat = (op) => new THREE.LineBasicMaterial({ color: 0xE8005A, transparent: true, opacity: op });
+    const dimMat = (op) => new THREE.LineBasicMaterial({ color: 0x9aa0aa, transparent: true, opacity: op });
+
+    // cadres de storyboard 16:9 en enfilade
+    const frames = [];
+    for (let i = 0; i < 6; i++) {
+      const w = 6.4, h = 3.6;
+      const g = new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h));
+      const l = new THREE.LineSegments(g, lineMat(i === 0 ? 0.95 : 0.5 - i * 0.06));
+      l.position.set((i % 2 === 0 ? -1 : 1) * i * 0.8, Math.sin(i * 1.3) * 0.8, -i * 4.2);
+      group.add(l); frames.push(l);
+    }
+    // lignes de construction traversantes (drawRange animé = tracé continu)
+    const drawn = [];
+    for (let i = 0; i < (IS_MOBILE ? 10 : 18); i++) {
+      const pts = [];
+      const segs = 24;
+      const x0 = (Math.random() - 0.5) * 30, y0 = (Math.random() - 0.5) * 14, z0 = -Math.random() * 26;
+      const dir = new THREE.Vector3((Math.random() - 0.5), (Math.random() - 0.5) * 0.5, (Math.random() - 0.5)).normalize();
+      const len = 8 + Math.random() * 16;
+      for (let s = 0; s <= segs; s++) pts.push(new THREE.Vector3(x0 + dir.x * len * s / segs, y0 + dir.y * len * s / segs, z0 + dir.z * len * s / segs));
+      const g = new THREE.BufferGeometry().setFromPoints(pts);
+      const l = new THREE.Line(g, Math.random() < 0.5 ? lineMat(0.4 + Math.random() * 0.4) : dimMat(0.25 + Math.random() * 0.2));
+      l.userData = { total: segs + 1, speed: 0.25 + Math.random() * 0.8, off: Math.random() * 10 };
+      g.setDrawRange(0, 0);
+      group.add(l); drawn.push(l);
+    }
+    // cercles de visée
+    const rings = [];
+    for (let i = 0; i < 5; i++) {
+      const g = new THREE.EdgesGeometry(new THREE.CircleGeometry(0.5 + Math.random() * 1.2, 40));
+      const r = new THREE.LineSegments(g, dimMat(0.3));
+      r.position.set((Math.random() - 0.5) * 18, (Math.random() - 0.5) * 8, -2 - Math.random() * 18);
+      group.add(r); rings.push(r);
+    }
+
+    return {
+      update(t, dt) {
+        drawn.forEach((l) => {
+          const p = ((t * l.userData.speed + l.userData.off) % 3) / 2; // pause en fin de tracé
+          l.geometry.setDrawRange(0, Math.floor(Math.min(1, p) * l.userData.total));
+        });
+        frames.forEach((f, i) => { f.rotation.z = Math.sin(t * 0.2 + i) * 0.03; });
+        rings.forEach((r) => { r.rotation.z += dt * 0.4; });
+        group.rotation.y = pointer.x * 0.14;
+        group.rotation.x = -pointer.y * 0.08;
+        camera.position.z = 12 + Math.sin(t * 0.1) * 0.6;
+      },
+      dispose() {
+        group.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
+      },
+    };
+  },
+
+  /* --- 04 · Le Laboratoire : scan laser volumétrique + poussière --- */
+  retouche({ scene, camera }) {
+    camera.position.set(0, 0, 9);
+    scene.fog = new THREE.FogExp2(0x000000, 0.06);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.07));
+    const rim = new THREE.DirectionalLight(0xffffff, 0.25);
+    rim.position.set(-4, 6, -3);
+    scene.add(rim);
+
+    // objet central "sur la table d'opération"
+    const objGeo = new THREE.TorusKnotGeometry(1.5, 0.42, 160, 24);
+    const objMat = new THREE.MeshStandardMaterial({ color: 0x15151a, roughness: 0.22, metalness: 0.9 });
+    const obj = new THREE.Mesh(objGeo, objMat);
+    scene.add(obj);
+
+    // ligne de scan + lumière attachée
+    const scanGeo = new THREE.PlaneGeometry(26, 0.05);
+    const scanMat = new THREE.MeshBasicMaterial({ color: 0xE8005A, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
+    const scan = new THREE.Mesh(scanGeo, scanMat);
+    scene.add(scan);
+    const scanLight = new THREE.PointLight(0xE8005A, 3.2, 14);
+    scene.add(scanLight);
+    const scanGlowGeo = new THREE.PlaneGeometry(26, 1.6);
+    const scanGlowMat = new THREE.MeshBasicMaterial({ color: 0xE8005A, transparent: true, opacity: 0.10, blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
+    const scanGlow = new THREE.Mesh(scanGlowGeo, scanGlowMat);
+    scene.add(scanGlow);
+
+    // poussière
+    const N = IS_MOBILE ? 350 : 800;
+    const dPos = new Float32Array(N * 3);
+    for (let i = 0; i < N; i++) {
+      dPos[i * 3] = (Math.random() - 0.5) * 22;
+      dPos[i * 3 + 1] = (Math.random() - 0.5) * 12;
+      dPos[i * 3 + 2] = (Math.random() - 0.5) * 14;
+    }
+    const dGeo = new THREE.BufferGeometry();
+    dGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+    const dMat = new THREE.PointsMaterial({ size: 0.05, map: glowTexture(), color: 0xbfbfc7, transparent: true, opacity: 0.45, blending: THREE.AdditiveBlending, depthWrite: false });
+    const dust = new THREE.Points(dGeo, dMat);
+    scene.add(dust);
+
+    return {
+      update(t, dt) {
+        obj.rotation.y += dt * 0.25;
+        obj.rotation.x = Math.sin(t * 0.18) * 0.35;
+        const sy = Math.sin(t * 0.35) * 3.6;
+        scan.position.y = scanGlow.position.y = sy;
+        scanLight.position.set(0, sy, 3);
+        scanMat.opacity = 0.65 + Math.sin(t * 6) * 0.2;
+        dust.rotation.y += dt * 0.015;
+        camera.position.x += (pointer.x * 1.8 - camera.position.x) * 0.04;
+        camera.position.y += (pointer.y * 1.2 - camera.position.y) * 0.04;
+        camera.lookAt(0, 0, 0);
+      },
+      dispose() {
+        objGeo.dispose(); objMat.dispose(); scanGeo.dispose(); scanMat.dispose();
+        scanGlowGeo.dispose(); scanGlowMat.dispose(); dGeo.dispose(); dMat.map.dispose(); dMat.dispose();
+      },
+    };
+  },
+
+  /* --- 05 · Le Musée : monolithes noirs + projecteurs --- */
+  branding({ scene, camera }) {
+    camera.position.set(0, 0.6, 12);
+    scene.fog = new THREE.FogExp2(0x000000, 0.05);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.12));
+
+    const floorGeo = new THREE.PlaneGeometry(80, 80);
+    const floorMat = new THREE.MeshStandardMaterial({ color: 0x050506, roughness: 0.9, metalness: 0.1 });
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -3.2;
+    scene.add(floor);
+
+    const monoMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0d, roughness: 0.82, metalness: 0.25 });
+    const monos = [];
+    const nM = IS_MOBILE ? 5 : 8;
+    for (let i = 0; i < nM; i++) {
+      const g = new THREE.BoxGeometry(0.8 + Math.random() * 0.9, 3 + Math.random() * 3.4, 0.5 + Math.random() * 0.4);
+      const m = new THREE.Mesh(g, monoMat);
+      const a = (i / nM) * Math.PI * 2 + 0.4;
+      const r = 4 + Math.random() * 5;
+      m.position.set(Math.cos(a) * r, 0.2 + Math.random() * 0.8, -3 - Math.sin(a) * r * 0.8);
+      m.rotation.y = Math.random() * Math.PI;
+      m.userData = { sp: 0.05 + Math.random() * 0.1, bob: Math.random() * Math.PI * 2 };
+      scene.add(m); monos.push(m);
+    }
+
+    const spots = [];
+    const mkSpot = (color, intensity, x, z) => {
+      const s = new THREE.SpotLight(color, intensity, 40, Math.PI / 7, 0.45, 1.1);
+      s.position.set(x, 11, z);
+      s.target.position.set(0, 0, -3);
+      scene.add(s); scene.add(s.target);
+      spots.push(s);
+      return s;
+    };
+    mkSpot(0xffffff, 2.2, 5, 4);
+    mkSpot(0xE8005A, 3.2, -6, -2);
+    mkSpot(0xffffff, 1.2, 0, -10);
+
+    return {
+      update(t, dt) {
+        monos.forEach((m) => {
+          m.rotation.y += dt * m.userData.sp;
+          m.position.y = 0.5 + Math.sin(t * 0.3 + m.userData.bob) * 0.35;
+        });
+        // les projecteurs orbitent lentement et visent des monolithes différents
+        spots.forEach((s, i) => {
+          const a = t * 0.12 + i * 2.1;
+          s.position.x = Math.cos(a) * 8;
+          s.position.z = Math.sin(a) * 8 - 2;
+          const tgt = monos[(i * 2) % monos.length];
+          s.target.position.lerp(tgt.position, 0.02);
+        });
+        camera.position.x += (pointer.x * 2.6 - camera.position.x) * 0.03;
+        camera.position.y += (0.6 + pointer.y * 1.4 - camera.position.y) * 0.03;
+        camera.lookAt(0, 0.4, -3);
+      },
+      dispose() {
+        floorGeo.dispose(); floorMat.dispose(); monoMat.dispose();
+        monos.forEach((m) => m.geometry.dispose());
+      },
+    };
+  },
+
+  /* --- 06 · Le Warp : traînées lumineuses, la vitesse ralentit au scroll --- */
+  cinema({ scene, camera }) {
+    camera.position.set(0, 0, 6);
+    const N = IS_MOBILE ? 180 : 380;
+    const pos = new Float32Array(N * 2 * 3);
+    const col = new Float32Array(N * 2 * 3);
+    const meta = [];
+    const cA = new THREE.Color(0xE8005A), cB = new THREE.Color(0xffffff), cC = new THREE.Color(0xC0003C);
+    for (let i = 0; i < N; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const r = 1.2 + Math.pow(Math.random(), 0.6) * 9;
+      const x = Math.cos(a) * r, y = Math.sin(a) * r * 0.7;
+      const z = -Math.random() * 140;
+      const len = 1.5 + Math.random() * 4;
+      pos.set([x, y, z, x, y, z - len], i * 6);
+      const c = Math.random() < 0.3 ? cB : (Math.random() < 0.5 ? cA : cC);
+      col.set([c.r, c.g, c.b, c.r * 0.2, c.g * 0.2, c.b * 0.2], i * 6);
+      meta.push({ len });
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const mat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending });
+    const lines = new THREE.LineSegments(geo, mat);
+    scene.add(lines);
+    scene.fog = new THREE.FogExp2(0x000000, 0.012);
+
+    return {
+      update(t, dt) {
+        // à l'entrée : warp à pleine vitesse ; au scroll : le temps ralentit
+        const speed = 55 - portalScrollP * 49;
+        const arr = geo.attributes.position.array;
+        for (let i = 0; i < N; i++) {
+          let z = arr[i * 6 + 2] + speed * dt;
+          if (z > 8) z = -140 - Math.random() * 20;
+          arr[i * 6 + 2] = z;
+          arr[i * 6 + 5] = z - meta[i].len * (0.4 + speed / 55);
+        }
+        geo.attributes.position.needsUpdate = true;
+        lines.rotation.z = Math.sin(t * 0.1) * 0.06 + pointer.x * 0.08;
+        camera.position.x += (pointer.x * 1.2 - camera.position.x) * 0.05;
+        camera.position.y += (pointer.y * 0.8 - camera.position.y) * 0.05;
+        camera.lookAt(0, 0, -30);
+      },
+      dispose() { geo.dispose(); mat.dispose(); },
+    };
+  },
+};
+
+/* =========================================================
+   MOTEUR WEBGL (un renderer par visite de portail)
+   ========================================================= */
+let gl = null;
+function startScene(key) {
+  const canvas = $('#glCanvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !IS_MOBILE, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 300);
+  const built = SceneBuilders[key]({ scene, camera });
+  const clock = new THREE.Clock();
+  const onResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  };
+  window.addEventListener('resize', onResize);
+  gl = { renderer, scene, camera, built, raf: 0, onResize };
+  const loop = () => {
+    const dt = Math.min(clock.getDelta(), 0.05);
+    built.update(clock.elapsedTime, dt);
+    renderer.render(scene, camera);
+    gl.raf = requestAnimationFrame(loop);
+  };
+  if (REDUCE) { built.update(0.5, 0.016); renderer.render(scene, camera); }
+  else loop();
+}
+function stopScene() {
+  if (!gl) return;
+  cancelAnimationFrame(gl.raf);
+  window.removeEventListener('resize', gl.onResize);
+  if (gl.built.dispose) gl.built.dispose();
+  gl.scene.traverse((o) => {
+    if (o.geometry) o.geometry.dispose();
+    if (o.material) {
+      if (Array.isArray(o.material)) o.material.forEach((m) => m.dispose());
+      else o.material.dispose();
+    }
+  });
+  gl.renderer.dispose();
+  gl = null;
+}
+
+/* =========================================================
+   HUB : rendu des cartes
+   ========================================================= */
+function renderHub() {
+  $('#hubGrid').innerHTML = PORTALS.map((p, i) => `
+    <article class="portal-card" data-key="${p.key}" tabindex="0" role="button" aria-label="Entrer dans le portail ${p.title}">
+      <img class="base" src="${p.cover}" alt="${p.title}" loading="${i < 3 ? 'eager' : 'lazy'}">
+      <img class="alt" src="${p.alt}" alt="" loading="lazy" aria-hidden="true">
+      <div class="shade"></div>
+      <span class="pc-num">${p.num}</span>
+      <div class="pc-info">
+        <span class="pc-tag">${p.tag}</span>
+        <h3>${p.room}</h3>
+        <span class="pc-enter">Entrer dans le portail
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </article>`).join('');
+}
+
+/* =========================================================
+   CONTENU D'UN PORTAIL (injecté à l'ouverture)
+   ========================================================= */
+function portalContentHtml(p, next) {
+  const projs = p.projects.map((pr, i) => `
+    <section class="p-project ${i % 2 ? 'alt' : ''}">
+      <div class="pp-in">
+        <div class="pp-media rv">
+          ${pr.video
+            ? `<video src="${pr.video}" muted loop playsinline autoplay poster="${pr.img}"></video>`
+            : `<img src="${pr.img}" alt="${pr.title}">`}
+          <span class="pp-glow"></span>
+        </div>
+        <div class="pp-txt">
+          <div class="pp-idx rv">${pr.idx}</div>
+          <h3 class="rv">${pr.title}</h3>
+          <div class="pp-cat rv">${pr.cat}</div>
+          <p class="rv">${pr.desc}</p>
+          <div class="pp-meta rv">${pr.meta.map((m) => `<span>${m}</span>`).join('')}</div>
+        </div>
+      </div>
+    </section>`).join('');
+
+  return `
+    <section class="p-intro">
+      <span class="pi-kicker rv">${p.introKicker}</span>
+      <h2 class="rv">${p.introTitle}</h2>
+      <p class="pi-desc rv">${p.introDesc}</p>
+      <div class="pi-cue"><span>Scroller</span><i></i></div>
+    </section>
+    ${projs}
+    <section class="p-outro">
+      <h3 class="rv">Un projet dans<br><span class="grad-txt">cette dimension ?</span></h3>
+      <p class="rv">Ces projets sont des démonstrations de savoir-faire. Le vôtre peut être le prochain — chiffrez-le en 3 minutes.</p>
+      <div class="po-btns rv">
+        <a class="btn btn-primary" href="devis.html?uni=${p.key === 'web' ? 'web' : p.key === 'branding' ? 'branding' : (p.key === 'storyboard' || p.key === 'cinema') ? 'video' : 'images'}">Configurer mon devis
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <button class="btn btn-ghost" data-next="${next.key}">Portail suivant · ${next.room}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </section>`;
+}
+
+/* =========================================================
+   OUVERTURE / FERMETURE (FLIP manuel)
+   ========================================================= */
+let activePortal = null;
+let currentCard = null;
+let revealIO = null;
+let introHRef = 0;
+
+function setHeadInfo(p) {
+  $('#phNum').textContent = p.num + ' / 06';
+  $('#phTitle').textContent = p.title;
+  $('#phRoom').textContent = p.room;
+}
+
+function armReveals() {
+  const scroller = $('#portalScroll');
+  if (revealIO) revealIO.disconnect();
+  revealIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); revealIO.unobserve(e.target); }
+    });
+  }, { root: scroller, threshold: 0.18 });
+  $$('.rv', scroller).forEach((el) => revealIO.observe(el));
+}
+
+// le fond WebGL reste net et spectaculaire pendant l'intro, puis se floute
+// et s'assombrit progressivement dès qu'on scrolle vers les projets, pour
+// que les textes/visuels restent parfaitement lisibles par-dessus la scène 3D.
+function updateVeil(scrollTop) {
+  const veil = $('#portalVeil');
+  if (!veil) return;
+  const vh = window.innerHeight;
+  const rampStart = Math.max(0, introHRef - vh * 0.9);
+  const rampEnd = introHRef + vh * 0.1;
+  const p = rampEnd > rampStart ? Math.min(1, Math.max(0, (scrollTop - rampStart) / (rampEnd - rampStart))) : 0;
+  const blur = (9 + p * 15).toFixed(1);
+  veil.style.backdropFilter = 'blur(' + blur + 'px)';
+  veil.style.webkitBackdropFilter = 'blur(' + blur + 'px)';
+  veil.style.backgroundColor = 'rgba(6,6,8,' + (0.22 + p * 0.36).toFixed(2) + ')';
+}
+
+function loadPortalContent(p) {
+  const idx = PORTALS.indexOf(p);
+  const next = PORTALS[(idx + 1) % PORTALS.length];
+  const scroller = $('#portalScroll');
+  scroller.innerHTML = portalContentHtml(p, next);
+  scroller.scrollTop = 0;
+  portalScrollP = 0;
+  setHeadInfo(p);
+  armReveals();
+  const introEl = $('.p-intro', scroller);
+  introHRef = introEl ? introEl.offsetHeight : window.innerHeight;
+  updateVeil(0);
+  const nextBtn = $('[data-next]', scroller);
+  if (nextBtn) nextBtn.addEventListener('click', () => switchPortal(nextBtn.dataset.next));
+}
+
+function openPortal(key, fromCard) {
+  const p = PORTALS.find((x) => x.key === key);
+  if (!p || activePortal) return;
+  activePortal = p;
+  currentCard = fromCard || null;
+
+  const wrap = $('#portalWrap');
+  const cover = $('#flipCover');
+  const coverImg = $('#flipCover img');
+  const canvas = $('#glCanvas');
+  const head = $('#portalHead');
+  const scroller = $('#portalScroll');
+
+  document.body.style.overflow = 'hidden';
+  $('#siteHeader').classList.add('hidden-by-portal');
+  wrap.classList.add('open');
+  wrap.setAttribute('aria-hidden', 'false');
+  coverImg.src = p.cover;
+  loadPortalContent(p);
+
+  const finishOpen = () => {
+    startScene(p.key);
+    gsap.to(canvas, { opacity: 1, duration: 1.1, ease: 'power2.inOut' });
+    gsap.to(cover, { opacity: 0, duration: 1.1, ease: 'power2.inOut', onComplete: () => { cover.style.display = 'none'; } });
+    gsap.to([scroller, head], { opacity: 1, duration: 0.8, delay: 0.35 });
+    gsap.fromTo(head, { y: -16 }, { y: 0, duration: 0.8, delay: 0.35, ease: 'power3.out' });
+  };
+
+  if (fromCard && !REDUCE) {
+    // FLIP manuel : le cover démarre à la position exacte de la carte
+    const r = fromCard.getBoundingClientRect();
+    gsap.set(cover, { display: 'block', opacity: 1, left: r.left, top: r.top, width: r.width, height: r.height, borderRadius: 16 });
+    gsap.set([canvas, scroller, head], { opacity: 0 });
+    gsap.to(cover, {
+      left: 0, top: 0, width: window.innerWidth, height: window.innerHeight, borderRadius: 0,
+      duration: 0.85, ease: 'power4.inOut', onComplete: finishOpen,
+    });
+  } else {
+    gsap.set(cover, { display: 'block', opacity: 1, left: 0, top: 0, width: window.innerWidth, height: window.innerHeight, borderRadius: 0 });
+    gsap.set([canvas, scroller, head], { opacity: 0 });
+    setTimeout(finishOpen, 120);
+  }
+}
+
+function closePortal() {
+  if (!activePortal) return;
+  const p = activePortal;
+  const wrap = $('#portalWrap');
+  const cover = $('#flipCover');
+  const canvas = $('#glCanvas');
+  const head = $('#portalHead');
+  const scroller = $('#portalScroll');
+
+  const card = currentCard && document.contains(currentCard)
+    ? currentCard
+    : $('.portal-card[data-key="' + p.key + '"]');
+
+  gsap.to([scroller, head], { opacity: 0, duration: 0.35 });
+  cover.style.display = 'block';
+  gsap.set(cover, { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight, borderRadius: 0 });
+  gsap.to(cover, { opacity: 1, duration: 0.5, ease: 'power2.in' });
+  gsap.to(canvas, {
+    opacity: 0, duration: 0.5, ease: 'power2.in',
+    onComplete: () => {
+      stopScene();
+      const done = () => {
+        wrap.classList.remove('open');
+        wrap.setAttribute('aria-hidden', 'true');
+        cover.style.display = 'none';
+        document.body.style.overflow = '';
+        $('#siteHeader').classList.remove('hidden-by-portal');
+        activePortal = null; currentCard = null;
+        if (history.replaceState) try { history.replaceState(null, '', window.location.pathname); } catch (e) {}
+      };
+      if (card && !REDUCE) {
+        const r = card.getBoundingClientRect();
+        gsap.to(cover, {
+          left: r.left, top: r.top, width: r.width, height: r.height, borderRadius: 16,
+          duration: 0.8, ease: 'power4.inOut', onComplete: done,
+        });
+      } else {
+        gsap.to(cover, { opacity: 0, duration: 0.5, onComplete: done });
+      }
+    },
+  });
+}
+
+/* bascule directe vers un autre portail (sans repasser par le hub) */
+function switchPortal(key) {
+  const p = PORTALS.find((x) => x.key === key);
+  if (!p || !activePortal) return;
+  const canvas = $('#glCanvas');
+  const scroller = $('#portalScroll');
+  const head = $('#portalHead');
+  gsap.to([canvas, scroller, head], {
+    opacity: 0, duration: 0.45, ease: 'power2.in',
+    onComplete: () => {
+      stopScene();
+      activePortal = p;
+      currentCard = $('.portal-card[data-key="' + p.key + '"]');
+      loadPortalContent(p);
+      startScene(p.key);
+      gsap.to(canvas, { opacity: 1, duration: 0.9, ease: 'power2.out' });
+      gsap.to([scroller, head], { opacity: 1, duration: 0.7, delay: 0.2 });
+    },
+  });
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  $('#year').textContent = new Date().getFullYear();
+  renderHub();
+
+  // lucioles
+  const box = $('#fireflies');
+  if (box && !REDUCE) {
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement('span');
+      const side = Math.random() < 0.5 ? Math.random() * 10 : 90 + Math.random() * 10;
+      s.style.left = side + '%'; s.style.top = (Math.random() * 100) + '%';
+      const size = 2 + Math.random() * 2;
+      s.style.width = size + 'px'; s.style.height = size + 'px';
+      s.style.animationDuration = (14 + Math.random() * 10) + 's';
+      s.style.animationDelay = (Math.random() * 8) + 's';
+      box.appendChild(s);
+    }
+  }
+
+  // clics sur les portails
+  $('#hubGrid').addEventListener('click', (e) => {
+    const card = e.target.closest('.portal-card');
+    if (card) openPortal(card.dataset.key, card);
+  });
+  $('#hubGrid').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.portal-card');
+      if (card) { e.preventDefault(); openPortal(card.dataset.key, card); }
+    }
+  });
+
+  $('#portalClose').addEventListener('click', closePortal);
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePortal(); });
+
+  // progression de scroll dans la salle (pilote la scène warp entre autres)
+  $('#portalScroll').addEventListener('scroll', (e) => {
+    const el = e.target;
+    const max = el.scrollHeight - el.clientHeight;
+    portalScrollP = max > 0 ? Math.min(1, el.scrollTop / max) : 0;
+    updateVeil(el.scrollTop);
+  }, { passive: true });
+
+  // deep link ?portal=key
+  try {
+    const k = new URLSearchParams(window.location.search).get('portal');
+    if (k && PORTALS.some((p) => p.key === k)) {
+      setTimeout(() => openPortal(k, $('.portal-card[data-key="' + k + '"]')), 350);
+    }
+  } catch (e) {}
+
+  // animations d'entrée du hub
+  if (window.gsap && !REDUCE) {
+    const animIn = () => {
+      const title = $('#hubTitle');
+      if (title && window.SplitText) {
+        const plain = title.childNodes[0];
+        const gradSpan = title.querySelector('.grad-txt');
+        const w = document.createElement('span');
+        w.style.display = 'inline-block'; w.style.marginRight = '0.22em';
+        title.insertBefore(w, plain); w.appendChild(plain);
+        const split = new SplitText(w, { type: 'chars' });
+        gsap.set(split.chars, { yPercent: 110, opacity: 0 });
+        gsap.set(gradSpan, { yPercent: 110, opacity: 0 });
+        gsap.timeline({ delay: 0.1 })
+          .to(split.chars, { yPercent: 0, opacity: 1, duration: 0.85, ease: 'power4.out', stagger: 0.03 })
+          .to(gradSpan, { yPercent: 0, opacity: 1, duration: 0.85, ease: 'power4.out' }, '<0.12');
+      }
+      gsap.fromTo('.hero .sub', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.3 });
+      gsap.fromTo('.portal-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, delay: 0.4, clearProps: 'opacity,transform' });
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(animIn);
+    else animIn();
+  }
+});
+</script>
+</body>
+</html>

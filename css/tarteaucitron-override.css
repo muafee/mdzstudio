@@ -1,0 +1,312 @@
+/* ============================================================
+   TARTEAUCITRON — OVERRIDE CHARTE MEDIA DEZIGN STUDIO
+   Chargé après tarteaucitron.js ; surcharge le CSS natif (useExternalCss:false).
+   Charte : fond noir #050505/#0A0A0A, texte blanc, accent dégradé
+   #C0003C → #E8005A, titres 'Anton', texte 'Space Grotesk', boutons pill 999px.
+   ============================================================ */
+
+:root {
+    --tac-bg: #0d0d0f;
+    --tac-bg-solid: #0A0A0A;
+    --tac-text: #ffffff;
+    --tac-text-muted: #A7A7A7;
+    --tac-border: rgba(255, 255, 255, .10);
+    --tac-primary: #E8005A;
+    --tac-primary2: #C0003C;
+    --tac-grad: linear-gradient(135deg, #C0003C, #E8005A);
+    --tac-radius-btn: 999px;
+    --tac-radius-card: 16px;
+    --tac-font: 'Space Grotesk', system-ui, sans-serif;
+    --tac-font-title: 'Anton', sans-serif;
+}
+
+#tarteaucitronRoot,
+#tarteaucitronRoot * {
+    font-family: var(--tac-font) !important;
+    box-sizing: border-box;
+}
+
+/* z-index au-dessus de tout le site (headers fixes = 50, overlays portfolio = 106) */
+#tarteaucitronRoot { position: relative; z-index: 999999 !important; }
+#tarteaucitronAlertBig,
+#tarteaucitronBack,
+#tarteaucitron,
+#tarteaucitronIcon,
+#tarteaucitronPercentage,
+#tarteaucitronRoot .tarteaucitronModal { z-index: 999999 !important; }
+
+/* ---------- Bandeau principal ---------- */
+#tarteaucitronRoot #tarteaucitronAlertBig {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    background: rgba(7, 7, 8, .92) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+    color: var(--tac-text) !important;
+    border-top: 1px solid rgba(232, 0, 90, .35) !important;
+    box-shadow: 0 -2px 0 0 var(--tac-primary), 0 -20px 50px rgba(0, 0, 0, .5) !important;
+    padding: 24px clamp(16px, 4vw, 48px) !important;
+    font-size: 14px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
+}
+div#tarteaucitronAlertBig:before { content: "" !important; } /* retire l'emoji 🍪 par défaut */
+
+#tarteaucitronDisclaimerAlert { color: var(--tac-text-muted) !important; line-height: 1.7 !important; font-size: 14px !important; }
+#tarteaucitronDisclaimerAlert a { color: var(--tac-primary) !important; text-decoration: underline !important; }
+#tarteaucitronDisclaimerAlert strong,
+#tarteaucitronDisclaimerAlert b { color: var(--tac-text) !important; }
+
+/* ---------- Boutons du bandeau : Accepter / Refuser (même poids — CNIL) ---------- */
+#tarteaucitronRoot #tarteaucitronPersonalize2,
+#tarteaucitronRoot #tarteaucitronAllDenied2 {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: var(--tac-radius-btn) !important;
+    padding: 13px 26px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    cursor: pointer !important;
+    transition: transform .2s, box-shadow .3s, border-color .2s, background .3s !important;
+    margin: 4px !important;
+    border: 1px solid transparent !important;
+}
+#tarteaucitronRoot #tarteaucitronPersonalize2 {
+    background: var(--tac-grad) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 28px rgba(192, 0, 60, .32) !important;
+}
+#tarteaucitronRoot #tarteaucitronPersonalize2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(232, 0, 90, .5) !important;
+}
+#tarteaucitronRoot #tarteaucitronAllDenied2 {
+    background: transparent !important;
+    color: var(--tac-text) !important;
+    border-color: rgba(255, 255, 255, .16) !important;
+}
+#tarteaucitronRoot #tarteaucitronAllDenied2:hover {
+    color: var(--tac-text) !important;
+    border-color: rgba(232, 0, 90, .6) !important;
+    background: rgba(232, 0, 90, .08) !important;
+}
+
+/* Personnaliser : lien discret mais bien visible */
+#tarteaucitronRoot #tarteaucitronCloseAlert {
+    background: transparent !important;
+    color: var(--tac-text-muted) !important;
+    border: 1px solid transparent !important;
+    border-radius: var(--tac-radius-btn) !important;
+    padding: 13px 18px !important;
+    font-size: 13.5px !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    transition: color .2s !important;
+    margin: 4px !important;
+}
+#tarteaucitronRoot #tarteaucitronCloseAlert:hover { color: var(--tac-primary) !important; }
+
+/* ---------- Overlay derrière la modale ---------- */
+#tarteaucitronBack { background: rgba(0, 0, 0, .78) !important; backdrop-filter: blur(4px) !important; }
+
+/* ---------- Modale de gestion détaillée ---------- */
+#tarteaucitronRoot #tarteaucitron {
+    background: var(--tac-bg-solid) !important;
+    color: var(--tac-text) !important;
+    border: 1px solid rgba(255, 255, 255, .08) !important;
+    border-radius: var(--tac-radius-card) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .55) !important;
+    max-width: 820px !important;
+    overflow: hidden !important;
+}
+#tarteaucitron #tarteaucitronDisclaimer,
+#tarteaucitron .tarteaucitronTitle,
+#tarteaucitron #tarteaucitronInfo,
+#tarteaucitronServices .tarteaucitronH1,
+#tarteaucitronServices .tarteaucitronH2 {
+    color: var(--tac-text) !important;
+    background: transparent !important;
+    font-family: var(--tac-font-title) !important;
+    text-transform: uppercase !important;
+    letter-spacing: .01em !important;
+}
+/* Bouton natif d'accordéon (ex: "+ Cookies obligatoires") : reset des styles UA de <button> */
+#tarteaucitron .tarteaucitronTitle button {
+    background: transparent !important;
+    color: var(--tac-text) !important;
+    border: none !important;
+    font: inherit !important;
+    font-family: var(--tac-font-title) !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+}
+#tarteaucitron .tarteaucitronPlus { border-color: var(--tac-primary) transparent transparent transparent !important; }
+#tarteaucitron #tarteaucitronInfo { font-family: var(--tac-font) !important; text-transform: none !important; color: var(--tac-text-muted) !important; }
+#tarteaucitronServices { box-shadow: none !important; background: transparent !important; }
+#tarteaucitron .tarteaucitronLine {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+}
+#tarteaucitron .tarteaucitronBorder {
+    background: transparent !important;
+    border-top: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+/* Bouton "Politique de confidentialité" (readmoreLink) dans le bandeau et la modale */
+#tarteaucitron #tarteaucitronPrivacyUrlDialog,
+#tarteaucitronRoot .tarteaucitronReadmoreOfficial,
+#tarteaucitronRoot a[id*="PrivacyUrl"] {
+    background: transparent !important;
+    color: var(--tac-text) !important;
+    border: 1px solid rgba(255, 255, 255, .16) !important;
+    border-radius: var(--tac-radius-btn) !important;
+    padding: 10px 22px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: all .3s ease !important;
+}
+#tarteaucitron #tarteaucitronPrivacyUrlDialog:hover,
+#tarteaucitronRoot .tarteaucitronReadmoreOfficial:hover {
+    border-color: rgba(232, 0, 90, .6) !important;
+    color: var(--tac-primary) !important;
+    background: rgba(232, 0, 90, .08) !important;
+}
+#tarteaucitron .tarteaucitronName,
+#tarteaucitron .tarteaucitronDetails,
+#tarteaucitron .tarteaucitronServiceDescription { color: var(--tac-text-muted) !important; }
+#tarteaucitron .tarteaucitronName strong { color: var(--tac-text) !important; }
+
+/* Barre "Enregistrer" fixée en bas de la modale */
+#tarteaucitron #tarteaucitronSave {
+    background: rgba(10, 10, 10, .98) !important;
+    border-top: 1px solid rgba(255, 255, 255, .08) !important;
+    padding: 16px !important;
+    text-align: center !important;
+}
+#tarteaucitron #tarteaucitronSaveButton {
+    background: var(--tac-grad) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--tac-radius-btn) !important;
+    padding: 12px 34px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+#tarteaucitron #tarteaucitronSaveButton:hover { box-shadow: 0 8px 24px rgba(192, 0, 60, .4) !important; }
+
+#tarteaucitronClosePanel {
+    background: transparent !important;
+    color: var(--tac-text-muted) !important;
+    border: 1px solid rgba(255, 255, 255, .16) !important;
+    border-radius: var(--tac-radius-btn) !important;
+}
+#tarteaucitronClosePanel:hover { color: var(--tac-text) !important; border-color: rgba(232, 0, 90, .6) !important; }
+
+/* Boutons globaux (Tout autoriser / Tout interdire) dans la modale */
+#tarteaucitronRoot #tarteaucitronAllAllowed,
+#tarteaucitronRoot #tarteaucitronAllDenied {
+    border-radius: var(--tac-radius-btn) !important;
+    font-weight: 600 !important;
+    padding: 10px 22px !important;
+}
+#tarteaucitronRoot #tarteaucitronAllAllowed { background: var(--tac-grad) !important; color: #fff !important; }
+#tarteaucitronRoot #tarteaucitronAllDenied { background: transparent !important; color: var(--tac-text) !important; border: 1px solid rgba(255, 255, 255, .16) !important; }
+
+/* Boutons Autoriser / Interdire par service */
+#tarteaucitronRoot .tarteaucitronAllow,
+#tarteaucitronRoot .tarteaucitronDeny {
+    border-radius: var(--tac-radius-btn) !important;
+    padding: 8px 18px !important;
+    font-weight: 600 !important;
+    font-size: 12.5px !important;
+    transition: all .3s ease !important;
+    opacity: .5;
+    border: 1px solid rgba(255, 255, 255, .16) !important;
+    background: transparent !important;
+    color: var(--tac-text) !important;
+}
+#tarteaucitronRoot .tarteaucitronIsAllowed .tarteaucitronAllow {
+    background: var(--tac-grad) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    opacity: 1;
+}
+#tarteaucitronRoot .tarteaucitronIsDenied .tarteaucitronDeny {
+    background: rgba(255, 255, 255, .08) !important;
+    color: var(--tac-text) !important;
+    border-color: rgba(255, 255, 255, .24) !important;
+    opacity: 1;
+}
+
+/* ---------- Icône flottante de réouverture ---------- */
+#tarteaucitronRoot #tarteaucitronIcon {
+    background: var(--tac-grad) !important;
+    border-radius: 50% !important;
+    width: 46px !important;
+    height: 46px !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    box-shadow: 0 6px 22px rgba(192, 0, 60, .4) !important;
+    opacity: .55;
+    transition: all .3s ease !important;
+}
+#tarteaucitronRoot #tarteaucitronIcon:hover { opacity: 1; transform: scale(1.08); }
+#tarteaucitronRoot #tarteaucitronIcon,
+#tarteaucitronRoot #tarteaucitronManager {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+#tarteaucitronRoot #tarteaucitronIcon img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    image-rendering: auto !important;
+}
+
+/* devis.html affiche une barre d'estimation mobile fixe en bas (bottom:14px) : on
+   remonte l'icône au-dessus pour éviter toute collision en dessous de 980px. */
+@media (max-width: 980px) {
+    #tarteaucitronRoot #tarteaucitronIcon { bottom: 88px !important; }
+}
+
+/* ---------- Placeholders des contenus bloqués (ex : YouTube) ---------- */
+.tac_activate {
+    background: var(--tac-bg-solid) !important;
+    color: var(--tac-text) !important;
+    border: 1px dashed rgba(232, 0, 90, .4) !important;
+    border-radius: var(--tac-radius-card) !important;
+}
+.tac_activate .tac_float button {
+    background: var(--tac-grad) !important;
+    color: #fff !important;
+    border-radius: var(--tac-radius-btn) !important;
+    border: none !important;
+    font-family: var(--tac-font) !important;
+    font-weight: 600 !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767px) {
+    #tarteaucitronRoot #tarteaucitronAlertBig { padding: 20px 18px !important; }
+    #tarteaucitronRoot #tarteaucitronPersonalize2,
+    #tarteaucitronRoot #tarteaucitronAllDenied2,
+    #tarteaucitronRoot #tarteaucitronCloseAlert {
+        display: block !important;
+        width: 100% !important;
+        margin: 6px 0 !important;
+        text-align: center !important;
+    }
+    #tarteaucitronRoot #tarteaucitron { max-width: 94vw !important; }
+}
